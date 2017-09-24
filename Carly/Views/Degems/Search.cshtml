@@ -1,0 +1,90 @@
+﻿@model IEnumerable<Carly.Models.Degem>
+
+@{
+    ViewBag.Title = "Search";
+}
+
+<h2>Search</h2>
+
+
+    @using (Html.BeginForm())
+    {
+
+    <p>
+        <div class="form-group">
+            @Html.Label("Brand:", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @{
+                    var degems = new List<SelectListItem>();
+                    degems.Add(new SelectListItem {  Text = "Any" ,Value=""});
+
+                    foreach (var Brand in ViewBag.degemList)
+                    {
+                        degems.Add(new SelectListItem { Value = Brand.id.ToString(), Text = Brand.BrandName });
+                    }
+                }
+                @Html.DropDownList("BrandSearchString", degems, htmlAttributes: new { @class = "form-control" }) <br />
+            </div>
+
+            @Html.Label("Model:", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBox("ModelSearchString", null, htmlAttributes: new { @class = "form-control" }) <br />
+            </div>
+
+            @Html.Label("Color:", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBox("ColorSearchString", null, htmlAttributes: new { @class = "form-control" }) <br />
+            </div>
+
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Search" class="btn btn-primary" /> 
+            </div>
+        </div>
+    </p>
+}
+
+
+<table id="Degems" class="table table-hover table-bordered" cellspacing="0" width="100%">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Brand.BrandName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DegemName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Color)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quantity)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Brand.BrandName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DegemName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Color)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quantity)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+

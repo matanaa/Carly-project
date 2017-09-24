@@ -1,0 +1,45 @@
+﻿@model Carly.Models.Brand
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Brand</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.BrandName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BrandName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OriginCountry)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OriginCountry)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Degems)
+        </dt>
+        <dd>
+            @foreach (var item in Model.Degems)
+            {
+                @Html.DisplayFor(modelItem => item.DegemName)<br />
+            }
+        </dd>
+
+    </dl>
+</div>
+
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

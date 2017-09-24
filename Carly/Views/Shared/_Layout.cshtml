@@ -1,0 +1,89 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Carly</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Carly", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Search", "Search", "Degems")</li>
+                    <li>@Html.ActionLink("Brands", "Index", "Brands")</li>
+                    <li>@Html.ActionLink("Models", "Index", "Degems")</li>
+                    <li>@Html.ActionLink("Branches", "Index", "Branches")</li>
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        <div class="jumbotron">
+            <img src="~/Content/img/CarlyTrans.png" alt="Carly Logo" height="180" width="500" align="middle" />
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <aside>
+            <section>
+                <header>
+                    <h3>Categories</h3>
+                </header>
+                <ul>
+                    <li><a href="#">Lorem ipsum dolor</a></li>
+                    <li><a href="#">Sit amet consectetur</a></li>
+                    <li><a href="#">Adipisicing elit sed</a></li>
+                </ul>
+            </section>
+            <section>
+                <header>
+                    <h3>Archives</h3>
+                </header>
+                <ul>
+                    <li><a href="#">December 2008</a></li>
+                    <li><a href="#">January 2009</a></li>
+                    <li><a href="#">February 2009</a></li>
+                    <li><a href="#">March 2009</a></li>
+                </ul>
+            </section>
+        </aside>
+    </div>
+    <hr /> 
+    <div class="container body-content">
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Carly by Nofar, Snir & Matan</p>
+            <div style="width:100px;height:100px">
+                <a href="http://www.accuweather.com/en/il/tel-aviv/215854/weather-forecast/215854"
+                   class="aw-widget-legal">
+                </a>
+                <div id="awcc1477324979360"
+                     class="aw-widget-current"
+                     data-locationkey="215854"
+                     data-unit="c"
+                     data-language="en-us"
+                     data-useip="false"
+                     data-uid="awcc1477324979360"></div>
+                <script type="text/javascript" src="http://oap.accuweather.com/launch.js">
+                </script>
+            </div>
+        </footer>
+    </div>
+
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)
+</body>
+</html>
