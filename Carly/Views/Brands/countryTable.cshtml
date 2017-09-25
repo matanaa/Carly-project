@@ -1,19 +1,13 @@
 ﻿@model IEnumerable<Carly.Models.Brand>
-
 @{
-    ViewBag.Title = "Index";
+    Layout = null;
 }
 
-<h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-    <br />
-    <a onclick="$('#tableShow').load(location.href+'//countryTable','');">Change view to Group by country</a>
-</p>
-
-<div id="tableShow">
-    <table id="Brands" class="table table-hover table-bordered " cellspacing="0" width="100%">
+@foreach (var country in Model.GroupBy(g => g.OriginCountry))
+{
+    <h2>@country.Key</h2>
+    <p>Total count: @country.Count()</p>
+    <table id="Brands-@country.Key" class="table table-hover table-bordered " cellspacing="0" width="100%">
         <thead>
             <tr>
                 <th>
@@ -26,7 +20,8 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var item in Model)
+
+            @foreach (var item in country)
             {
                 <tr>
                     <td>
@@ -51,12 +46,17 @@
         </tbody>
     </table>
 
-    @section scripts
-{
+
+}
+
+
+@*@foreach (var country in Model.GroupBy(g => g.OriginCountry))
+    {
         <script>
-            $(document).ready(function () {
-                $('#Brands').DataTable();
-            });
+        $(document).ready(function () {
+            $('#Brands-@country.Key').DataTable();
+        });
         </script>
-    }
-</div>
+    }*@
+
+

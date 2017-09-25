@@ -23,7 +23,7 @@ namespace Carly.Controllers
         }
 
         // GET: Brands
-        public ActionResult country()
+        public ActionResult countryTable()
         {
             //var qry = db.Brands.GroupBy(g => g.OriginCountry)
             //    .Select(o => new
@@ -33,17 +33,10 @@ namespace Carly.Controllers
             //    }).ToList();
 
 
-            var qry = db.Brands.GroupBy(g => g.OriginCountry)
-                .Select(o => new
-                {
-                    country = o.Key,
-                    brand = o.OrderBy(b => b.BrandName).ToList()
-                }).ToList();
 
-
-            //return View(db.Brands.ToList());
+            return View(db.Brands.ToList());
             //https://stackoverflow.com/questions/16480295/linq-group-by-and-order-by-in-c-sharp
-            return View(qry);
+            // return View(qry);
         }
 
 

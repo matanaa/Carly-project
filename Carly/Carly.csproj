@@ -550,7 +550,7 @@
     <Content Include="Views\Branches\Edit.cshtml" />
     <Content Include="Views\Branches\Index.cshtml" />
     <Content Include="Views\Degems\Search.cshtml" />
-    <Content Include="Views\Brands\country.cshtml" />
+    <Content Include="Views\Brands\countryTable.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
