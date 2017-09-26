@@ -18,7 +18,11 @@ namespace Carly.Controllers
         public ActionResult Index()
         {
             var degems = db.Degems.Include(d => d.Brand);
-            return View(degems.ToList());
+
+            if (User.IsInRole("Admin"))
+                return View(degems.ToList());
+            return View("ReadOnlyIndex", degems.ToList());
+
         }
 
         // GET: Degems/Search

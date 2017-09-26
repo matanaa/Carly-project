@@ -1,0 +1,184 @@
+﻿@model IEnumerable<Carly.Models.Branch>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<h2>Index</h2>
+
+
+
+<div class="container">
+    <div class="row">
+        <input type="submit" value="Advanced search" class="btn btn-default" id="advbutton" />
+    </div>
+    <br />
+    <div class="row">
+        <div id="ADVSearch" class="ADVSearch" style="display: none;">
+
+            @using (Html.BeginForm())
+        {
+                @Html.Label("Branch Name:", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBox("BranchSearchString", null, htmlAttributes: new { @class = "form-control" }) <br />
+                </div>
+
+
+
+                @Html.Label("City:", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBox("CitySearchString", null, htmlAttributes: new { @class = "form-control" }) <br />
+                </div>
+
+                @Html.Label("Country:", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBox("CountrySearchString", null, htmlAttributes: new { @class = "form-control" }) <br />
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Search" class="btn btn-primary" />
+                    </div>
+                </div>
+
+        }
+        </div>
+    </div>
+</div>
+<br/>
+
+    <table id="Branches" class="table table-hover table-bordered " cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.BranchName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Address)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.City)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Country)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PhoneNumber)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BranchName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Address)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.City)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Country)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PhoneNumber)
+                    </td>
+                    <td>
+                        
+                        <a href="@Url.Action("Details", new { id = item.BranchId })" style="text-decoration: none">
+                            <img src="@Url.Content("~/Content/img/view-details-24.ico")" height="25" width="25" />
+                        </a>
+                        
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+
+<div id="map"></div>
+<style>
+    #map {
+        height: 400px;
+        width: 100%;
+    }
+</style>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            // show nice table with sort
+            $('#Branches').DataTable();
+            // create function to advanced search button
+            var show = false;
+            $("#advbutton").click(function () {
+                if (show) {
+                    $("#ADVSearch").hide(500);
+                }
+                else {
+                    $("#ADVSearch").show(500);
+                }
+                show = !show;
+            });
+        });
+    </script>
+
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDEX36u3uHjl5MVgX5BuWrMB7cgWlkCHEY&callback=initMap">
+    </script>
+
+    <script>
+        function initMap() {
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 8,
+                center: { lat: -34.397, lng: 150.644 }
+            });
+            var styles = [{ "height": "400px", "width": "100%" }];
+            map.set('styles', styles);
+        
+            var geocoder = new google.maps.Geocoder();
+            @foreach (var address in Model)
+            {
+                <text>
+                    addMarkersByAddress(geocoder, map,"@(address.BranchName)","@(address.PhoneNumber)", "@(address.Address),@(address.City),@(address.Country) ");
+                </text>
+            }
+        }
+        
+        function addMarkersByAddress(geocoder, resultsMap,branchName,phone, address) {
+            var contentString = '<div class="info-window text-warning">' +
+                                '<h3>'+branchName+'</h3>' +
+                                '<div class="info-content">' +
+                                '<p> <b>Branch Name: </b>' + branchName + '<br/> <b>Phone: </b>' + phone + '<br/> <b>address: </b>' + address + ' </p>' +
+                                '</div>' +
+                                '</div>';
+              var infowindow = new google.maps.InfoWindow({
+                  content: contentString,
+                  maxWidth: 400
+              });
+            
+              geocoder.geocode({ 'address': address }, function (results, status) {
+                  if (status === 'OK') {
+                      resultsMap.setCenter(results[0].geometry.location);
+                      var marker = new google.maps.Marker({
+                          map: resultsMap,
+                          position: results[0].geometry.location
+                      });
+            
+                      marker.addListener('click', function () {
+                          infowindow.open(map, marker);
+                      });
+                  } else {
+                      alert('Geocode was not successful for the following reason: ' + status);
+                  }
+              });
+        }
+</script>   
+    }

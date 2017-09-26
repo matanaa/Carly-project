@@ -1,0 +1,66 @@
+﻿@model IEnumerable<Carly.Models.Degem>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+
+
+<table id="Degems" class="table table-hover table-bordered" cellspacing="0" width="100%">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Brand.BrandName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DegemName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Color)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quantity)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Brand.BrandName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DegemName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Color)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quantity)
+                </td>
+                <td>
+                   
+                    <a href="@Url.Action("Details", new { id = item.DegemId })" style="text-decoration: none">
+                        <img src="@Url.Content("~/Content/img/view-details-24.ico")" height="25" width="25" />
+                    </a>
+                   
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            $('#Degems').DataTable();
+        });
+    </script>
+}

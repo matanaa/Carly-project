@@ -13,9 +13,6 @@
                 <th>
                     @Html.DisplayNameFor(model => model.BrandName)
                 </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.OriginCountry)
-                </th>
                 <th></th>
             </tr>
         </thead>
@@ -26,9 +23,6 @@
                 <tr>
                     <td>
                         @Html.DisplayFor(modelItem => item.BrandName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.OriginCountry)
                     </td>
                     <td>
                         <a href="@Url.Action("Edit", new { id = item.id })" style="text-decoration: none">

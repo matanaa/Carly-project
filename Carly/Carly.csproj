@@ -559,6 +559,9 @@
     <Content Include="Views\Branches\Index.cshtml" />
     <Content Include="Views\Degems\Search.cshtml" />
     <Content Include="Views\Brands\countryTable.cshtml" />
+    <Content Include="Views\Brands\ReadOnlyIndex.cshtml" />
+    <Content Include="Views\Branches\ReadOnlyIndex.cshtml" />
+    <Content Include="Views\Degems\ReadOnlyIndex.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

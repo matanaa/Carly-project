@@ -18,6 +18,8 @@ namespace Carly.Controllers
         public ActionResult Index(string BranchSearchString, string CountrySearchString, string CitySearchString)
         {
 
+            
+
             var FilterBranches = from b in db.Branches select b;
 
             if (!String.IsNullOrEmpty(BranchSearchString))
@@ -35,7 +37,11 @@ namespace Carly.Controllers
                 FilterBranches = FilterBranches.Where(b => b.City.Contains(CitySearchString));
             }
 
-            return View(FilterBranches);
+            if (User.IsInRole("Admin"))
+                return View(FilterBranches);
+
+            return View("ReadOnlyIndex", FilterBranches);
+
         }
 
         // GET: Branches/Details/5
@@ -50,6 +56,8 @@ namespace Carly.Controllers
             {
                 return HttpNotFound();
             }
+
+           
             return View(branch);
         }
 
