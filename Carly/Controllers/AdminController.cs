@@ -11,11 +11,7 @@ namespace Carly.Controllers
 {
     public class AdminController : Controller
     {
-        //private UserManager<ApplicationUser> userManager;
-        //private RoleManager<IdentityRole> roleManager;
-
-
-
+ 
         // GET: Admin
         public ActionResult Index()
         {
