@@ -225,6 +225,10 @@
     <Compile Include="Migrations\201709261438269_TEST.Designer.cs">
       <DependentUpon>201709261438269_TEST.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201709290733012_AdminPageJoinTable.cs" />
+    <Compile Include="Migrations\201709290733012_AdminPageJoinTable.Designer.cs">
+      <DependentUpon>201709290733012_AdminPageJoinTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Admin.cs" />
@@ -592,6 +596,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201709261438269_TEST.resx">
       <DependentUpon>201709261438269_TEST.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709290733012_AdminPageJoinTable.resx">
+      <DependentUpon>201709290733012_AdminPageJoinTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
