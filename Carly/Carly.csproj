@@ -571,6 +571,7 @@
     <Content Include="Views\Branches\ReadOnlyIndex.cshtml" />
     <Content Include="Views\Degems\ReadOnlyIndex.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Brands\brandTable.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

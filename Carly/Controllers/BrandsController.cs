@@ -25,6 +25,11 @@ namespace Carly.Controllers
         }
 
         // GET: Brands
+        public ActionResult brandTable()
+        {
+                return View(db.Brands.ToList());
+        }
+        // GET: Brands
         public ActionResult countryTable()
         {
             //var qry = db.Brands.GroupBy(g => g.OriginCountry)
