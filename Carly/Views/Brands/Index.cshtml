@@ -6,56 +6,64 @@
 
 <h2>Index</h2>
 
+<div class= "container">
 <p>
     @Html.ActionLink("Create New", "Create")
     <br />
-    <a onclick="$('#tableShow').load(location.href+'//countryTable','');">Change view to Group by country</a>
+    <div class="row">
+        <input type="submit" class="btn btn-default" value="Change view to Group by country" onclick="$('#tableShow').load(location.href+'//countryTable','');" />
+    </div>
+    <br />
 </p>
 
-<div id="tableShow">
-    <table id="Brands" class="table table-hover table-bordered " cellspacing="0" width="100%">
-        <thead>
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.BrandName)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.OriginCountry)
-                </th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
+    <div id="tableShow">
+        <table id="Brands" class="table table-hover table-bordered " cellspacing="0" width="100%">
+            <thead>
                 <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.BrandName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.OriginCountry)
-                    </td>
-                    <td>
-                        <a href="@Url.Action("Edit", new { id = item.id })" style="text-decoration: none">
-                            <img src="@Url.Content("~/Content/img/edit-24.ico")" height="25" width="25" />
-                        </a>
-                        <a href="@Url.Action("Details", new { id = item.id })" style="text-decoration: none">
-                            <img src="@Url.Content("~/Content/img/view-details-24.ico")" height="25" width="25" />
-                        </a>
-                        <a href="@Url.Action("Delete", new { id = item.id })" style="text-decoration: none">
-                            <img src="@Url.Content("~/Content/img/delete-24.ico")" height="25" width="25" />
-                        </a>
-                    </td>
+                    <th>
+                        @Html.DisplayNameFor(model => model.BrandName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.OriginCountry)
+                    </th>
+                    <th></th>
                 </tr>
-            }
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+            {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.BrandName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.OriginCountry)
+                        </td>
+                        <td>
+                            <a href="@Url.Action("Edit", new { id = item.id })" style="text-decoration: none">
+                                <img src="@Url.Content("~/Content/img/edit-24.ico")" height="25" width="25" />
+                            </a>
+                            <a href="@Url.Action("Details", new { id = item.id })" style="text-decoration: none">
+                                <img src="@Url.Content("~/Content/img/view-details-24.ico")" height="25" width="25" />
+                            </a>
+                            <a href="@Url.Action("Delete", new { id = item.id })" style="text-decoration: none">
+                                <img src="@Url.Content("~/Content/img/delete-24.ico")" height="25" width="25" />
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
 
     @section scripts
 {
         <script>
             $(document).ready(function () {
                 $('#Brands').DataTable();
+            });
+            $("#groupByCountry").click(function () {
+                $(load(location.href + '//countryTable', ''));
             });
         </script>
     }
