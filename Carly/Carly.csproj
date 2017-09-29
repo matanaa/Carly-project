@@ -205,31 +205,31 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201709211922016_Intial.cs" />
-    <Compile Include="Migrations\201709211922016_Intial.Designer.cs">
+    <Compile Include="obj\Migrations\201709211922016_Intial.cs" />
+    <Compile Include="obj\Migrations\201709211922016_Intial.Designer.cs">
       <DependentUpon>201709211922016_Intial.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201709221016031_Branches.cs" />
-    <Compile Include="Migrations\201709221016031_Branches.Designer.cs">
+    <Compile Include="obj\Migrations\201709221016031_Branches.cs" />
+    <Compile Include="obj\Migrations\201709221016031_Branches.Designer.cs">
       <DependentUpon>201709221016031_Branches.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201709221026444_AddressChangesToString.cs" />
-    <Compile Include="Migrations\201709221026444_AddressChangesToString.Designer.cs">
+    <Compile Include="obj\Migrations\201709221026444_AddressChangesToString.cs" />
+    <Compile Include="obj\Migrations\201709221026444_AddressChangesToString.Designer.cs">
       <DependentUpon>201709221026444_AddressChangesToString.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201709231005102_BranchAddressCityCountry.cs" />
-    <Compile Include="Migrations\201709231005102_BranchAddressCityCountry.Designer.cs">
+    <Compile Include="obj\Migrations\201709231005102_BranchAddressCityCountry.cs" />
+    <Compile Include="obj\Migrations\201709231005102_BranchAddressCityCountry.Designer.cs">
       <DependentUpon>201709231005102_BranchAddressCityCountry.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201709261438269_TEST.cs" />
-    <Compile Include="Migrations\201709261438269_TEST.Designer.cs">
+    <Compile Include="obj\Migrations\201709261438269_TEST.cs" />
+    <Compile Include="obj\Migrations\201709261438269_TEST.Designer.cs">
       <DependentUpon>201709261438269_TEST.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201709290733012_AdminPageJoinTable.cs" />
-    <Compile Include="Migrations\201709290733012_AdminPageJoinTable.Designer.cs">
+    <Compile Include="obj\Migrations\201709290733012_AdminPageJoinTable.cs" />
+    <Compile Include="obj\Migrations\201709290733012_AdminPageJoinTable.Designer.cs">
       <DependentUpon>201709290733012_AdminPageJoinTable.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="obj\Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Admin.cs" />
     <Compile Include="Models\Branch.cs" />
@@ -567,9 +567,6 @@
     <Content Include="Views\Branches\Index.cshtml" />
     <Content Include="Views\Degems\Search.cshtml" />
     <Content Include="Views\Brands\countryTable.cshtml" />
-    <Content Include="Views\Brands\ReadOnlyIndex.cshtml" />
-    <Content Include="Views\Branches\ReadOnlyIndex.cshtml" />
-    <Content Include="Views\Degems\ReadOnlyIndex.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Brands\brandTable.cshtml" />
   </ItemGroup>
@@ -583,22 +580,22 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201709211922016_Intial.resx">
+    <EmbeddedResource Include="obj\Migrations\201709211922016_Intial.resx">
       <DependentUpon>201709211922016_Intial.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201709221016031_Branches.resx">
+    <EmbeddedResource Include="obj\Migrations\201709221016031_Branches.resx">
       <DependentUpon>201709221016031_Branches.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201709221026444_AddressChangesToString.resx">
+    <EmbeddedResource Include="obj\Migrations\201709221026444_AddressChangesToString.resx">
       <DependentUpon>201709221026444_AddressChangesToString.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201709231005102_BranchAddressCityCountry.resx">
+    <EmbeddedResource Include="obj\Migrations\201709231005102_BranchAddressCityCountry.resx">
       <DependentUpon>201709231005102_BranchAddressCityCountry.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201709261438269_TEST.resx">
+    <EmbeddedResource Include="obj\Migrations\201709261438269_TEST.resx">
       <DependentUpon>201709261438269_TEST.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201709290733012_AdminPageJoinTable.resx">
+    <EmbeddedResource Include="obj\Migrations\201709290733012_AdminPageJoinTable.resx">
       <DependentUpon>201709290733012_AdminPageJoinTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>

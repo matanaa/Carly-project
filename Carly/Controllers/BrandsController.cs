@@ -19,9 +19,9 @@ namespace Carly.Controllers
         // GET: Brands
         public ActionResult Index()
         {
-            if (User.IsInRole("Admin"))
+            //if (User.IsInRole("Admin"))
                 return View(db.Brands.ToList());
-            return View("ReadOnlyIndex", db.Brands.ToList());
+            //return View("ReadOnlyIndex", db.Brands.ToList());
         }
 
         // GET: Brands

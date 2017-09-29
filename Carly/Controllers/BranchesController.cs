@@ -37,10 +37,10 @@ namespace Carly.Controllers
                 FilterBranches = FilterBranches.Where(b => b.City.Contains(CitySearchString));
             }
 
-            if (User.IsInRole("Admin"))
+            //if (User.IsInRole("Admin"))
                 return View(FilterBranches);
 
-            return View("ReadOnlyIndex", FilterBranches);
+            //return View("ReadOnlyIndex", FilterBranches);
 
         }
 

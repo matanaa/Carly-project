@@ -19,9 +19,9 @@ namespace Carly.Controllers
         {
             var degems = db.Degems.Include(d => d.Brand);
 
-            if (User.IsInRole("Admin"))
+            //if (User.IsInRole("Admin"))
                 return View(degems.ToList());
-            return View("ReadOnlyIndex", degems.ToList());
+         //   return View("ReadOnlyIndex", degems.ToList());
 
         }
 

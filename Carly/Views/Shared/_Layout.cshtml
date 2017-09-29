@@ -25,7 +25,12 @@
                     <li>@Html.ActionLink("Brands", "Index", "Brands")</li>
                     <li>@Html.ActionLink("Models", "Index", "Degems")</li>
                     <li>@Html.ActionLink("Branches", "Index", "Branches")</li>
+                    @if (User.IsInRole("Admin"))
+                    {
                     <li>@Html.ActionLink("Admin", "Index", "Admin")</li>
+                    }
+
+                    
 
                 </ul>
                 @Html.Partial("_LoginPartial")
