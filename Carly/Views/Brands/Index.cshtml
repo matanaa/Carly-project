@@ -6,13 +6,13 @@
 
 <h2>Index</h2>
 
-<div class= "container">
+<div class="container">
 
     <p>
-    @if (User.IsInRole("Admin"))
-    {
-        @Html.ActionLink("Create New", "Create")
-    }
+        @if (User.IsInRole("Admin"))
+        {
+            @Html.ActionLink("Create New", "Create")
+        }
     </p>
     <br />
 
@@ -23,7 +23,7 @@
     </div>
     <br />
     <br />
-</p>
+    </p>
 
     <div id="tableShow">
         <table id="Brands" class="table table-hover table-bordered " cellspacing="0" width="100%">
@@ -49,21 +49,21 @@
                             @Html.DisplayFor(modelItem => item.OriginCountry)
                         </td>
                         <td>
-@if (User.IsInRole("Admin"))
-{
-                            <a href="@Url.Action("Edit", new { id = item.id })" style="text-decoration: none">
-                                <img src="@Url.Content("~/Content/img/edit-24.ico")" height="25" width="25" />
-                            </a>
-}
+                            @if (User.IsInRole("Admin"))
+                            {
+                                <a href="@Url.Action("Edit", new { id = item.id })" style="text-decoration: none">
+                                    <img src="@Url.Content("~/Content/img/edit-24.ico")" height="25" width="25" />
+                                </a>
+                            }
                             <a href="@Url.Action("Details", new { id = item.id })" style="text-decoration: none">
                                 <img src="@Url.Content("~/Content/img/view-details-24.ico")" height="25" width="25" />
                             </a>
-@if (User.IsInRole("Admin"))
-{
-                            <a href="@Url.Action("Delete", new { id = item.id })" style="text-decoration: none">
-                                <img src="@Url.Content("~/Content/img/delete-24.ico")" height="25" width="25" />
-                            </a>
-}
+                            @if (User.IsInRole("Admin"))
+                            {
+                                <a href="@Url.Action("Delete", new { id = item.id })" style="text-decoration: none">
+                                    <img src="@Url.Content("~/Content/img/delete-24.ico")" height="25" width="25" />
+                                </a>
+                            }
                         </td>
                     </tr>
                 }

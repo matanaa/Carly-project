@@ -27,7 +27,7 @@ namespace Carly
                       "~/Scripts/respond.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap-darkly.css",
+                      "~/Content/carly.css", "~/Content/bootstrap-darkly.css",
                       "~/Content/site.css"));
         }
     }

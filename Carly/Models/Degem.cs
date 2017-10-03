@@ -25,7 +25,12 @@ namespace Carly.Models
 
         public virtual Brand Brand { get; set; }
 
+        [Display(Name = "Images")]
+        public string ImagesLinks { get; set; }
 
+        [Display(Name = "Video")]
+        public string VideoLink { get; set; }
 
+        public virtual ICollection<Comment> Comments { get; set; }
     }
 }
