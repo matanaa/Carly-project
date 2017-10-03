@@ -19,9 +19,9 @@ namespace Carly.Controllers
         {
             var degems = db.Degems.Include(d => d.Brand);
 
-            if (User.IsInRole("Admin"))
+            //if (User.IsInRole("Admin"))
                 return View(degems.ToList());
-            return View("ReadOnlyIndex", degems.ToList());
+         //   return View("ReadOnlyIndex", degems.ToList());
 
         }
 
@@ -76,6 +76,10 @@ namespace Carly.Controllers
         // GET: Degems/Create
         public ActionResult Create()
         {
+            if (!User.IsInRole("Admin"))
+            {
+                return new HttpUnauthorizedResult("Unauthorized");
+            }
             ViewBag.BrandID = new SelectList(db.Brands, "id", "BrandName");
             return View();
         }
@@ -101,6 +105,10 @@ namespace Carly.Controllers
         // GET: Degems/Edit/5
         public ActionResult Edit(int? id)
         {
+            if (!User.IsInRole("Admin"))
+            {
+                return new HttpUnauthorizedResult("Unauthorized");
+            }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -134,6 +142,10 @@ namespace Carly.Controllers
         // GET: Degems/Delete/5
         public ActionResult Delete(int? id)
         {
+            if (!User.IsInRole("Admin"))
+            {
+                return new HttpUnauthorizedResult("Unauthorized");
+            }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);

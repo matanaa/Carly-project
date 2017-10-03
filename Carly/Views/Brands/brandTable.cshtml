@@ -1,29 +1,23 @@
-﻿@model List<Carly.Models.Brand>
-
+﻿@model IEnumerable<Carly.Models.Brand>
 @{
-    ViewBag.Title = "Index";
+    Layout = null;
 }
 
-<h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table id="Brands" class="table table-hover table-bordered " cellspacing="0" width="100%">
     <thead>
         <tr>
-            @*<th>
+            <th>
                 @Html.DisplayNameFor(model => model.BrandName)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.OriginCountry)
-            </th>*@
+            </th>
             <th></th>
         </tr>
     </thead>
-    @*<tbody>
+    <tbody>
         @foreach (var item in Model)
-        {
+            {
             <tr>
                 <td>
                     @Html.DisplayFor(modelItem => item.BrandName)
@@ -32,26 +26,22 @@
                     @Html.DisplayFor(modelItem => item.OriginCountry)
                 </td>
                 <td>
+                    @if (User.IsInRole("Admin")) { 
                     <a href="@Url.Action("Edit", new { id = item.id })" style="text-decoration: none">
                         <img src="@Url.Content("~/Content/img/edit-24.ico")" height="25" width="25" />
                     </a>
+                    }
                     <a href="@Url.Action("Details", new { id = item.id })" style="text-decoration: none">
                         <img src="@Url.Content("~/Content/img/view-details-24.ico")" height="25" width="25" />
                     </a>
+                    @if (User.IsInRole("Admin"))
+                    {
                     <a href="@Url.Action("Delete", new { id = item.id })" style="text-decoration: none">
                         <img src="@Url.Content("~/Content/img/delete-24.ico")" height="25" width="25" />
                     </a>
+                    }
                 </td>
             </tr>
         }
-    </tbody>*@
+    </tbody>
 </table>
-
-@section scripts
-{
-    <script>
-        $(document).ready(function () {
-            $('#Brands').DataTable();
-        });
-    </script>
-}

@@ -19,23 +19,20 @@ namespace Carly.Controllers
         // GET: Brands
         public ActionResult Index()
         {
-            if (User.IsInRole("Admin"))
+            //if (User.IsInRole("Admin"))
                 return View(db.Brands.ToList());
-            return View("ReadOnlyIndex", db.Brands.ToList());
+            //return View("ReadOnlyIndex", db.Brands.ToList());
         }
 
         // GET: Brands
+        public ActionResult brandTable()
+        {
+                return View(db.Brands.ToList());
+        }
+        // GET: Brands
         public ActionResult countryTable()
         {
-            //var qry = db.Brands.GroupBy(g => g.OriginCountry)
-            //    .Select(o => new
-            //    {
-            //        country = o.Key,
-            //        brand = o.OrderBy(b => b.BrandName).ToList()
-            //    }).ToList();
-
-
-
+            
             return View(db.Brands.ToList());
             //https://stackoverflow.com/questions/16480295/linq-group-by-and-order-by-in-c-sharp
             // return View(qry);
@@ -60,6 +57,10 @@ namespace Carly.Controllers
         // GET: Brands/Create
         public ActionResult Create()
         {
+            if (!User.IsInRole("Admin"))
+            {
+                return new HttpUnauthorizedResult("Unauthorized");
+            }
             return View();
         }
 
@@ -83,6 +84,10 @@ namespace Carly.Controllers
         // GET: Brands/Edit/5
         public ActionResult Edit(int? id)
         {
+            if (!User.IsInRole("Admin"))
+            {
+                return new HttpUnauthorizedResult("Unauthorized");
+            }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -114,6 +119,10 @@ namespace Carly.Controllers
         // GET: Brands/Delete/5
         public ActionResult Delete(int? id)
         {
+            if (!User.IsInRole("Admin"))
+            {
+                return new HttpUnauthorizedResult("Unauthorized");
+            }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);

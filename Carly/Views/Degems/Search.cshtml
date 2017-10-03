@@ -6,46 +6,47 @@
 
 <h2>Search</h2>
 
-
+<div class="container">
     @using (Html.BeginForm())
     {
 
-    <p>
-        <div class="form-group">
-            @Html.Label("Brand:", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @{
-                    var degems = new List<SelectListItem>();
-                    degems.Add(new SelectListItem {  Text = "Any" ,Value=""});
+        <p>
+            <div class="form-group">
+                @Html.Label("Brand:", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @{
+                        var degems = new List<SelectListItem>();
+                        degems.Add(new SelectListItem { Text = "Any", Value = "" });
 
-                    foreach (var Brand in ViewBag.degemList)
-                    {
-                        degems.Add(new SelectListItem { Value = Brand.id.ToString(), Text = Brand.BrandName });
+                        foreach (var Brand in ViewBag.degemList)
+                        {
+                            degems.Add(new SelectListItem { Value = Brand.id.ToString(), Text = Brand.BrandName });
+                        }
                     }
-                }
-                @Html.DropDownList("BrandSearchString", degems, htmlAttributes: new { @class = "form-control" }) <br />
+                    @Html.DropDownList("BrandSearchString", degems, htmlAttributes: new { @class = "form-control" }) <br />
+                </div>
+
+                @Html.Label("Model:", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBox("ModelSearchString", null, htmlAttributes: new { @class = "form-control" }) <br />
+                </div>
+
+                @Html.Label("Color:", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBox("ColorSearchString", null, htmlAttributes: new { @class = "form-control" }) <br />
+                </div>
+
             </div>
 
-            @Html.Label("Model:", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.TextBox("ModelSearchString", null, htmlAttributes: new { @class = "form-control" }) <br />
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Search" class="btn btn-primary" />
+                </div>
             </div>
-
-            @Html.Label("Color:", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.TextBox("ColorSearchString", null, htmlAttributes: new { @class = "form-control" }) <br />
-            </div>
-
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Search" class="btn btn-primary" /> 
-            </div>
-        </div>
-    </p>
-}
-
+        </p>
+                        }
+</div>
+<br/>
 
 <table id="Degems" class="table table-hover table-bordered" cellspacing="0" width="100%">
     <thead>

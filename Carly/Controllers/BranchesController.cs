@@ -37,10 +37,10 @@ namespace Carly.Controllers
                 FilterBranches = FilterBranches.Where(b => b.City.Contains(CitySearchString));
             }
 
-            if (User.IsInRole("Admin"))
+            //if (User.IsInRole("Admin"))
                 return View(FilterBranches);
-
-            return View("ReadOnlyIndex", FilterBranches);
+ 
+            //return View("ReadOnlyIndex", FilterBranches);
 
         }
 
@@ -64,6 +64,10 @@ namespace Carly.Controllers
         // GET: Branches/Create
         public ActionResult Create()
         {
+            if (!User.IsInRole("Admin"))
+            {
+                return new HttpUnauthorizedResult("Unauthorized");
+            }
             return View();
         }
 
@@ -74,6 +78,10 @@ namespace Carly.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "BranchId,BranchName,Address,City,Country,PhoneNumber")] Branch branch)
         {
+            if (!User.IsInRole("Admin"))
+            {
+                return new HttpUnauthorizedResult("Unauthorized");
+            }
             if (ModelState.IsValid)
             {
                 db.Branches.Add(branch);
@@ -87,6 +95,10 @@ namespace Carly.Controllers
         // GET: Branches/Edit/5
         public ActionResult Edit(int? id)
         {
+            if (!User.IsInRole("Admin"))
+            {
+                return new HttpUnauthorizedResult("Unauthorized");
+            }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -118,6 +130,10 @@ namespace Carly.Controllers
         // GET: Branches/Delete/5
         public ActionResult Delete(int? id)
         {
+            if (!User.IsInRole("Admin"))
+            {
+                return new HttpUnauthorizedResult("Unauthorized");
+            }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
