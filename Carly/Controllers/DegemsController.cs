@@ -89,7 +89,7 @@ namespace Carly.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "DegemId,DegemName,Color,BrandID,Quantity")] Degem degem)
+        public ActionResult Create([Bind(Include = "DegemId,DegemName,Color,BrandID,Quantity,VideoLink,ImageLink")] Degem degem)
         {
             if (ModelState.IsValid)
             {
@@ -127,7 +127,7 @@ namespace Carly.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "DegemId,DegemName,Color,BrandID,Quantity")] Degem degem)
+        public ActionResult Edit([Bind(Include = "DegemId,DegemName,Color,BrandID,Quantity,VideoLink,ImagesLinks")] Degem degem)
         {
             if (ModelState.IsValid)
             {

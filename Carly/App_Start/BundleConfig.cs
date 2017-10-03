@@ -13,6 +13,13 @@ namespace Carly
                           "~/Scripts/datatables/datatables.bootstrap.js",
                           "~/Scripts/jquery-{version}.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/jssor").Include(
+                        "~/Scripts/jssor.slider.min.js",
+                        "~/Scripts/docs.min.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/lightbox").Include(
+                        "~/Scripts/lightbox2/lightbox-plus-jquery.min.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
 
@@ -29,6 +36,11 @@ namespace Carly
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/carly.css", "~/Content/bootstrap-darkly.css",
                       "~/Content/site.css"));
+
+
+            bundles.Add(new StyleBundle("~/Content/lightbox").Include(
+                      "~/Content/lightbox2/lightbox.min.css"));
+
         }
     }
 }

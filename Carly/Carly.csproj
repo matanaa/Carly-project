@@ -412,6 +412,10 @@
     <Content Include="Content\DataTables\images\sort_desc.png" />
     <Content Include="Content\DataTables\images\sort_desc_disabled.png" />
     <Content Include="Content\DataTables\swf\flashExport.swf" />
+    <Content Include="Content\images\close.png" />
+    <Content Include="Content\images\loading.gif" />
+    <Content Include="Content\images\next.png" />
+    <Content Include="Content\images\prev.png" />
     <Content Include="Content\img\CarlyTrans.png" />
     <Content Include="Content\img\delete-24.ico" />
     <Content Include="Content\img\edit-24.ico" />
@@ -509,6 +513,7 @@
     <Content Include="Scripts\DataTables\responsive.jqueryui.min.js" />
     <Content Include="Scripts\DataTables\responsive.semanticui.js" />
     <Content Include="Scripts\DataTables\responsive.semanticui.min.js" />
+    <Content Include="Scripts\docs.min.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -516,6 +521,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\jssor.slider.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
@@ -577,7 +583,10 @@
     <Content Include="Views\Brands\brandTable.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Content\lightbox2\" />
+    <Folder Include="Content\Video\" />
     <Folder Include="obj\" />
+    <Folder Include="Scripts\lightbox2\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
