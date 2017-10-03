@@ -15,4 +15,12 @@ namespace Carly.Models
         public string email { get; set; }
         public string roleName { get; set; }
     }
+
+    public class CarDetails
+    {
+        public string brandName { get; set; }
+        public string originCountry { get; set; }
+        public string color { get; set; }
+        public int quantity { get; set; }
+    }
 }
