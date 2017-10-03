@@ -13,10 +13,6 @@ namespace Carly
                           "~/Scripts/datatables/datatables.bootstrap.js",
                           "~/Scripts/jquery-{version}.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/jssor").Include(
-                        "~/Scripts/jssor.slider.min.js",
-                        "~/Scripts/docs.min.js"));
-
             bundles.Add(new ScriptBundle("~/bundles/lightbox").Include(
                         "~/Scripts/lightbox2/lightbox-plus-jquery.min.js"));
 

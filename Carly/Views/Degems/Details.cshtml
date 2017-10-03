@@ -1,81 +1,43 @@
 ﻿@model Carly.Models.Degem
-
 @{
     ViewBag.Title = "Details";
 }
 @Styles.Render("~/Content/lightbox")
-<h2>Details</h2>
-
+<h2>@Html.DisplayFor(model => model.Brand.BrandName) @Html.DisplayFor(model => model.DegemName)</h2>
 <div>
-    <h4>Degem</h4>
-    <hr />
-    @if (!Model.VideoLink.IsEmpty())
-    {
-        <video controls="controls">
-            <source src="@Html.DisplayFor(model => model.VideoLink)" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-    }
-
-
-
-
+    <h4><b>@Html.DisplayNameFor(model => model.Color):</b> <row style="text-shadow: 1px 1px @Html.DisplayFor(model => model.Color);" >@Html.DisplayFor(model => model.Color)</row></h4>
+    <h4><b>@Html.DisplayNameFor(model => model.Quantity):</b> @Html.DisplayFor(model => model.Quantity)</h4>
+   
     <section>
+        @if (!Model.VideoLink.IsEmpty())
+        {
+            <hr />
+            <video controls="controls" class="center-block">
+                <source src="@Html.DisplayFor(model => model.VideoLink)" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        }
 
-        <hr>
-
-        <h3>@Html.DisplayNameFor(model => model.ImagesLinks):</h3>
-        <div>
-            @foreach (var img in Model.ImagesLinks.Split(';'))
+    </section>
+    <section>        
+        <div >
+            @if (!Model.ImagesLinks.IsEmpty())
             {
-                <text>
-            <a class="car" href="@img" data-lightbox="car" data-title="@Html.DisplayFor(model => model.Brand.BrandName) @Html.DisplayFor(model => model.DegemName) @Html.DisplayFor(model => model.Color)"><img class="car" src="@img" width="103" alt=""></a>
-            </text>
+                <hr>
+                <h3>@Html.DisplayNameFor(model => model.ImagesLinks):</h3>
+                foreach (var img in Model.ImagesLinks.Split(';'))
+                {
+                    <text>
+                        <a class="car" href="@img" data-lightbox="car" data-title="@Html.DisplayFor(model => model.Brand .BrandName) @Html.DisplayFor(model => model.DegemName) @Html.DisplayFor(model => model.Color)"><img class="car" src="@img" width="103" alt=""></a>
+                    </text>
+                }
             }
         </div>
     </section>
 
 
-
-
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Brand.BrandName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Brand.BrandName)
-        </dd>
-
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DegemName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DegemName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Color)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Color)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Quantity)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Quantity)
-        </dd>
-
-    </dl>
 </div>
 <p>
     @Html.ActionLink("Back to List", "Index")
 </p>
-
-    @Scripts.Render("~/bundles/lightbox")
-</div>
+@Scripts.Render("~/bundles/lightbox")
