@@ -28,7 +28,7 @@
                 foreach (var img in Model.ImagesLinks.Split(';'))
                 {
                     <text>
-                        <a class="car" href="@img" data-lightbox="car" data-title="@Html.DisplayFor(model => model.Brand .BrandName) @Html.DisplayFor(model => model.DegemName) @Html.DisplayFor(model => model.Color)"><img class="car" src="@img" width="103" alt=""></a>
+                        <a class="car" href="@img" data-lightbox="car" data-title="@Html.DisplayFor(model => model.Brand.BrandName) @Html.DisplayFor(model => model.DegemName) @Html.DisplayFor(model => model.Color)"><img class="car" src="@img" width="103" alt=""></a>
                     </text>
                 }
             }
