@@ -10,7 +10,7 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Degem</h4>
         <hr />
@@ -44,8 +44,41 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.ImagesLinks, htmlAttributes: new { @class = "control-label col-md-2" })
+
+
             <div class="col-md-10">
-                @Html.EditorFor(model => model.ImagesLinks, new { htmlAttributes = new { @class = "form-control" } })
+                @if (!Model.ImagesLinks.IsEmpty())
+                {
+                var imgs = Model.ImagesLinks.Split(';');
+                    <text>
+                        <div class="input_fields_wrap">
+                            <button class="add_field_button btn btn-success">Add More Photos</button>
+                            <div><input value="@imgs[0]" class="img-field form-control text-box single-line" type="text" name="pics[]" onchange="onChangePic()"></div>
+                            <br />
+
+                            @for (var i = 0; i < imgs.Length; i++)
+                            {
+
+                                <div><input onchange="onChangePic()" value="@imgs[i]" class="img-field form-control text-box single-line" type="text" name="mytext[]" /><a href="#" class="remove_field">Remove</a></div>
+
+                            }
+                        </div>
+                    </text>
+
+                }
+                else
+                {
+
+                    <div class="input_fields_wrap">
+                        <button class="add_field_button btn btn-success">Add More Photos</button>
+                        <div><input class="img-field form-control text-box single-line" type="text" name="pics[]" onchange="onChangePic()"></div>
+                        <br />
+                    </div>
+
+                }
+
+
+                @Html.HiddenFor(model => model.ImagesLinks, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.ImagesLinks, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -67,10 +100,6 @@
             </div>
         </div>
 
-        <div class="input_fields_wrap col-md-10">
-            <button class="add_field_button btn btn-success">Add More Photos</button>
-            <div><input class="img-field form-control text-box single-line" type="text" name="pics[]"></div>
-        </div>
 
 
         <div class="form-group">
@@ -88,31 +117,31 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 
-<script>
-    $(document).ready(function () {
-        var max_fields = 10; //maximum input boxes allowed
-        var wrapper = $(".input_fields_wrap"); //Fields wrapper
-        var add_button = $(".add_field_button"); //Add button ID
+    <script>
+        $(document).ready(function () {
+            var max_fields = 10; //maximum input boxes allowed
+            var wrapper = $(".input_fields_wrap"); //Fields wrapper
+            var add_button = $(".add_field_button"); //Add button ID
 
-        var x = 1; //initlal text box count
-        $(add_button).click(function (e) { //on add input button click
-            e.preventDefault();
-            if (x < max_fields) { //max input box allowed
-                x++; //text box increment
-                $(wrapper).append('<div><input onchange="onChangePic()" class="img-field form-control text-box single-line" type="text" name="mytext[]"/><a href="#" class="remove_field">Remove</a></div>'); //add input box
-            }
+            var x = @(Model.ImagesLinks.IsEmpty() ? 1:Model.ImagesLinks.Split(';').Length) //initlal text box count
+            $(add_button).click(function (e) { //on add input button click
+                e.preventDefault();
+                if (x < max_fields) { //max input box allowed
+                    x++; //text box increment
+                    $(wrapper).append('<div><input onchange="onChangePic()" class="img-field form-control text-box single-line" type="text" name="mytext[]"/><a href="#" class="remove_field">Remove</a></div>'); //add input box
+                }
+            });
+
+            $(wrapper).on("click", ".remove_field", function (e) { //user click on remove text
+                e.preventDefault(); $(this).parent('div').remove(); x--;
+            })
         });
 
-        $(wrapper).on("click", ".remove_field", function (e) { //user click on remove text
-            e.preventDefault(); $(this).parent('div').remove(); x--;
-        })
-    });
 
-
-    function onChangePic() {
+        function onChangePic() {
             var values = $(".img-field")
                           .map(function () { return $(this).val(); }).get();
-            var sites="";
+            var sites = "";
             for (var i = 0 ; i < values.length; i++) {
                 if (values[i] != "") {
                     sites = sites + ';' + values[i];
@@ -121,9 +150,9 @@
             sites = sites.substr(1);
             console.log(sites);
             $("#ImagesLinks").val(sites);
-    }
-        
+        }
 
-</script>
+
+    </script>
 
 }
