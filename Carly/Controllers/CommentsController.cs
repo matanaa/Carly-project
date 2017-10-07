@@ -55,9 +55,9 @@ namespace Carly.Controllers
             {
                 db.Comment.Add(comment);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                //return RedirectToAction("Index");
             }
-
+            return Redirect("/Degems/Details/"+comment.DegemID+"/#post-" + comment.ID);
             ViewBag.DegemID = new SelectList(db.Degems, "DegemId", "DegemName", comment.DegemID);
             return View(comment);
         }

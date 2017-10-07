@@ -19,7 +19,7 @@
 	
 	#comments article:nth-child(odd) {
 		padding: 21px;
-		background: #E3E3E3;
+		background: #ec8505;
 		border: 1px solid #d7d7d7;
 		-moz-border-radius: 11px;
 		-webkit-border-radius: 11px;
@@ -61,8 +61,8 @@
 	
 	.comments article:nth-child(odd) {
 		padding: 21px;
-		background: #E3E3E3;
-		border: 1px solid #d7d7d7;
+		background: #ec8505;
+		border: 1px solid #bd6f0e;
 		-moz-border-radius: 11px;
 		-webkit-border-radius: 11px;
 	}
