@@ -14,7 +14,7 @@ namespace Carly.Models
         [Required]
         public int DegemID { get; set; }
 
-        [Required]
+        //[Required]
         public string Author { get; set; }
 
         [Required]

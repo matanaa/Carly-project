@@ -8,18 +8,18 @@
     <h4><b>@Html.DisplayNameFor(model => model.Color):</b> <row style="text-shadow: 1px 1px @Html.DisplayFor(model => model.Color);" >@Html.DisplayFor(model => model.Color)</row></h4>
     <h4><b>@Html.DisplayNameFor(model => model.Quantity):</b> @Html.DisplayFor(model => model.Quantity)</h4>
    
-    <section>
+    <section id="video">
         @if (!Model.VideoLink.IsEmpty())
         {
             <hr />
-            <video controls="controls" class="center-block">
-                <source src="@Html.DisplayFor(model => model.VideoLink)" type="video/mp4">
+            <video controls="controls" class="center-block " autoplay>
+                <source src="@Html.DisplayFor(model => model.VideoLink)" type="video/mp4" >
                 Your browser does not support the video tag.
             </video>
         }
 
     </section>
-    <section>        
+    <section id="images">        
         <div >
             @if (!Model.ImagesLinks.IsEmpty())
             {
@@ -33,6 +33,48 @@
                 }
             }
         </div>
+    </section>
+
+    <section id="comments-@Html.DisplayFor(Model => Model.Comments)" class="comments">
+        <hr/>
+        <h3>Comments</h3>
+        @foreach (var comment in Model.Comments)
+        {
+            //comment.content = comment.content.Replace("\n", "<br/>");
+
+            <article>
+                <header>
+                    <b>Author: </b>@Html.DisplayFor(modelItem => comment.Author) 
+                </header>
+                <p>@Html.DisplayFor(modelItem => comment.ContentInfo) </p>
+            </article>
+        }
+
+    </section>
+
+
+
+    <section id="comments">
+      
+        @using (Html.BeginForm("Create", "Comments")) {
+        @Html.AntiForgeryToken()
+        <h3>Post a comment</h3>
+        <p>
+            <label for="Title">Title</label>
+            <input name="Title" id="Title" type="text" required="">
+        </p>
+
+        <p>
+            <label for="ContentInfo">Comment</label>
+            <textarea name="ContentInfo" id="ContentInfo" required=""></textarea>
+        </p>
+
+        <p><input type="submit" value="Post comment"></p>
+        <input type="hidden" name="DegemID" id="DegemID" value="@Html.DisplayFor(Model => Model.DegemId)" />
+     
+        }
+        
+
     </section>
 
 
