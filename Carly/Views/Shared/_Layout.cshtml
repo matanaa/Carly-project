@@ -11,13 +11,13 @@
 <body>
     <div id="fb-root"></div>
     <script>
-(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.10&appId=1573737326011353";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.10&appId=1573737326011353";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
 
 
 
@@ -39,10 +39,10 @@
                     <li>@Html.ActionLink("Branches", "Index", "Branches")</li>
                     @if (User.IsInRole("Admin"))
                     {
-                    <li>@Html.ActionLink("Admin", "Index", "Admin")</li>
+                        <li>@Html.ActionLink("Admin", "Index", "Admin")</li>
                     }
 
-                    
+
 
                 </ul>
                 @Html.Partial("_LoginPartial")
@@ -84,7 +84,7 @@
             </section>
         </aside>
     </div>
-    <hr /> 
+    <hr />
     <div class="container body-content">
         <footer>
             <p>&copy; @DateTime.Now.Year - Carly by Nofar, Snir & Matan</p>
@@ -105,8 +105,8 @@
         </footer>
     </div>
 
-        @Scripts.Render("~/bundles/jquery")
-        @Scripts.Render("~/bundles/bootstrap")
-        @RenderSection("scripts", required: false)
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
 </body>
 </html>

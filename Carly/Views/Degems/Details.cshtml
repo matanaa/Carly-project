@@ -44,7 +44,7 @@
 
             <article>
                 <header>
-                    <b>Author: </b>@Html.DisplayFor(modelItem => comment.Author) 
+                    <b>@Html.DisplayFor(modelItem => comment.Author)</b>
                 </header>
                 <p>@Html.DisplayFor(modelItem => comment.ContentInfo) </p>
             </article>
@@ -59,11 +59,6 @@
         @using (Html.BeginForm("Create", "Comments")) {
         @Html.AntiForgeryToken()
         <h3>Post a comment</h3>
-        <p>
-            <label for="Title">Title</label>
-            <input name="Title" id="Title" type="text" required="">
-        </p>
-
         <p>
             <label for="ContentInfo">Comment</label>
             <textarea name="ContentInfo" id="ContentInfo" required=""></textarea>
