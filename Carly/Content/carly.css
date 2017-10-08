@@ -95,13 +95,13 @@
 ------------------------------*/
 
 
-	form p {
+.comments-form form p {
 		display: table;
 		margin-bottom: 22px;
 		padding: 0 22px;
 	}
 
-		form label {
+.comments-form form label {
 			display: table-cell;
 			width: 140px;
 			padding-right: 20px;
@@ -110,21 +110,27 @@
 			vertical-align: top;
 		}
 	
-		form input[type="text"], form input[type="email"], form input[type="url"] {
+.comments-form form input[type="text"], form input[type="email"], form input[type="url"] {
 			display: table-cell;
 			width: 300px;
 			height: 20px;
 			border: 1px solid #d7d7d7;
 		}
 		
-		form textarea {
+.comments-form form textarea {
 			width: 300px;
 			height: 100px;
 			border: 1px solid #d7d7d7;
 		}
 		
-		form input[type="submit"] {
+.comments-form form input[type="submit"] {
 			margin-left: 162px;
 		}
 
 
+.img-field {
+   // max-width: 280px;
+   max-width: 580px ;
+    display: -webkit-inline-box !important;
+
+}

@@ -54,13 +54,13 @@
                         <div class="input_fields_wrap">
                             <button class="add_field_button btn btn-success">Add More Photos</button>
                             <div><input value="@imgs[0]" class="img-field form-control text-box single-line" type="text" name="pics[]" onchange="onChangePic()"></div>
-                            <br />
+                     
 
                             @for (var i = 0; i < imgs.Length; i++)
                             {
 
-                                <div><input onchange="onChangePic()" value="@imgs[i]" class="img-field form-control text-box single-line" type="text" name="mytext[]" /><a href="#" class="remove_field">Remove</a></div>
-
+                                <div><br /><input onchange="onChangePic()" value="@imgs[i]" class="img-field comments-form form-control text-box single-line " type="text" name="mytext[]" /><a href="#" class="remove_field"><span class="glyphicon glyphicon-remove"></span>Remove</a></div>
+                               
                             }
                         </div>
                     </text>
@@ -128,7 +128,7 @@
                 e.preventDefault();
                 if (x < max_fields) { //max input box allowed
                     x++; //text box increment
-                    $(wrapper).append('<div><input onchange="onChangePic()" class="img-field form-control text-box single-line" type="text" name="mytext[]"/><a href="#" class="remove_field">Remove</a></div>'); //add input box
+                    $(wrapper).append('<br /><div><input onchange="onChangePic()" class="img-field form-control text-box single-line" type="text" name="mytext[]"/><a href="#" class="remove_field"><span class="glyphicon glyphicon-remove"></span>Remove</a></div>'); //add input box
                 }
             });
 
