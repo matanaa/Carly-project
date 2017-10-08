@@ -22,11 +22,11 @@ namespace Carly.Controllers
             foreach (var c in allCars)
                 carDetails.Add(new CarDetails
                 {
-                    brandName = c.BrandName,
-                    originCountry = c.OriginCountry,
-                    DegemName = c.BrandName,
-                    color = c.Color,
-                    quantity = c.Quantity
+                    BrandName = c.BrandName,
+                    OriginCountry = c.OriginCountry,
+                    DegemName = c.DegemName,
+                    Color = c.Color,
+                    Quantity = c.Quantity
                 });
 
             ViewBag.carDetails = carDetails;

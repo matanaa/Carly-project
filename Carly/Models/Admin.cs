@@ -25,19 +25,20 @@ namespace Carly.Models
 
     public class CarDetails
     {
+
         [Display (Name = "Brand Name")]
-        public string brandName { get; set; }
+        public string BrandName { get; set; }
 
         [Display(Name = "Origin Country")]
-        public string originCountry { get; set; }
+        public string OriginCountry { get; set; }
 
         [Display(Name = "Model Name")]
         public string DegemName { get; set; }
 
         [Display(Name = "Color")]
-        public string color { get; set; }
+        public string Color { get; set; }
 
         [Display(Name = "Quantity")]
-        public int quantity { get; set; }
+        public int Quantity { get; set; }
     }
 }

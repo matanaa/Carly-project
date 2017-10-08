@@ -26,36 +26,58 @@ namespace Carly.Controllers
         }
 
         // GET: Degems/Search
-        public ActionResult Search(string BrandSearchString, string ColorSearchString, string ModelSearchString)
+        public ActionResult Search(string BrandSearchString, string ColorSearchString, string ModelSearchString, string CountrySearchString)
         {
-            var degemList = new List<Brand>();
-
-            // find all brand in the database
+            
+               var degemList = new List<Brand>();
+            var carList = new List<CarDetails>();
+            // find all degems in the database
             // for the droplinkbutton
+
             var DegemQry = from s in db.Brands
                            orderby s.BrandName
-                           select s; 
+                           select s;
+
+            //join table of all cars-details
+                var allCars = (from b in db.Brands
+                           join m in db.Degems on b.id equals m.BrandID
+                               where ((String.IsNullOrEmpty(ColorSearchString)) || m.Color.Contains(ColorSearchString)) && ((String.IsNullOrEmpty(BrandSearchString) || b.id.ToString().Contains(BrandSearchString)) && ((String.IsNullOrEmpty(ModelSearchString) || m.DegemName.Contains(ModelSearchString)) && ((String.IsNullOrEmpty(CountrySearchString) || b.OriginCountry.Contains(CountrySearchString)))))
+                               select new { b.BrandName, b.OriginCountry, m.DegemName, m.Color, m.Quantity }).Distinct();
+            
+            foreach (var c in allCars)
+                carList.Add(new CarDetails
+                {
+                    BrandName = c.BrandName,
+                    OriginCountry = c.OriginCountry,
+                    DegemName = c.DegemName,
+                    Color = c.Color,
+                    Quantity = c.Quantity
+                });
+            //.CarDetails.AddRange(carList.Distinct());
+            //db.SaveChanges();
             degemList.AddRange(DegemQry.Distinct());
             ViewBag.degemList= degemList;
+            ViewBag.carList = carList;
 
             //get the data to table
-            var degems = from b in db.Degems select b; //TODO: change to join query
-            if (!String.IsNullOrEmpty(ColorSearchString))
+            
+            /*var cars = from b in db.CarDetails select b;
+            if (ColorSearchString == null)
             {
-                degems = degems.Where(b => b.Color.Contains(ColorSearchString));
+                carList = carList.Where(b => b.Color.Contains(ColorSearchString));
             }
 
             if (!String.IsNullOrEmpty(BrandSearchString))
             {
-                degems = degems.Where(b => b.BrandID.ToString() == BrandSearchString);
+                cars = cars.Where(b => b.BrandName == BrandSearchString);
             }
 
             if (!String.IsNullOrEmpty(ModelSearchString))
             {
-                degems = degems.Where(b => b.DegemName == ModelSearchString);
-            }
+                cars = cars.Where(b => b.DegemName == ModelSearchString);
+            }*/
 
-            return View(degems);
+            return View(carList);
         }
 
         // GET: Degems/Details/5

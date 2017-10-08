@@ -13,7 +13,5 @@ namespace Carly.Models
         public DbSet<Branch> Branches { get; set; }
         public DbSet<Admin> Users { get; set; }
         public DbSet<Comment> Comment { get; set; }
-
-
     }
 }
