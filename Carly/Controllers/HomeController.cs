@@ -16,7 +16,7 @@ namespace Carly.Controllers
         {
             var allCars = (from b in db.Brands
                            join m in db.Degems on b.id equals m.BrandID
-                           select new { b.BrandName, b.OriginCountry, m.Color, m.Quantity });
+                           select new { b.BrandName, b.OriginCountry, m.DegemName, m.Color, m.Quantity });
 
             var carDetails = new List<CarDetails>();
             foreach (var c in allCars)
@@ -24,6 +24,7 @@ namespace Carly.Controllers
                 {
                     brandName = c.BrandName,
                     originCountry = c.OriginCountry,
+                    DegemName = c.BrandName,
                     color = c.Color,
                     quantity = c.Quantity
                 });

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Carly.Models.Degem>
+﻿@model IEnumerable<Carly.Models.CarDetails>
 
 @{
     ViewBag.Title = "Home Page";
@@ -13,16 +13,19 @@
         <thead>
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.Brand)
+                    @Html.DisplayNameFor(model => model.brandName)
                 </th>
                 <th>
-                    Origin Country
+                    @Html.DisplayNameFor(model => model.originCountry)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Color)
+                    @Html.DisplayNameFor(model => model.DegemName)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Quantity)
+                    @Html.DisplayNameFor(model => model.color)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.quantity)
                 </th>
           
             </tr>
@@ -37,6 +40,9 @@
                         </td>
                         <td>
                             @(item.originCountry)
+                        </td>
+                        <td>
+                            @(item.DegemName)
                         </td>
                         <td>
                             @(item.color)
