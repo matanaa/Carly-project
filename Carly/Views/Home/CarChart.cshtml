@@ -307,8 +307,9 @@
                 legend.append('text')
                   .attr('x', legendRectSize + legendSpacing)
                   .attr('y', legendRectSize - legendSpacing)
+                   .style('fill', "#fff")
                   .text(function (d) { return d; });
-
+                
             });
 
         })(window.d3);
