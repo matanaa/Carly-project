@@ -204,6 +204,17 @@ namespace Carly.Controllers
             return Json("{}");
         }
 
+        public JsonResult CountryStatistics()
+        {
+            var brands = db.Degems.GroupBy(x => new { x.Brand.OriginCountry }).Select(g => new { label = g.Key.OriginCountry, count = g.Count() });
+            //Comments.GroupBy(x => new { x.PublishedDate.Year, x.PublishedDate.Month }).Select(g => new { Key = g.Key.Year + "" + g.Key.Month, Count = g.Count() });
+            if (brands.Count() > 0)
+            {
+                string json = JsonConvert.SerializeObject(brands.ToArray());
+                return Json(brands.ToList(), JsonRequestBehavior.AllowGet);
+            }
+            return Json("{}");
+        }
 
         protected override void Dispose(bool disposing)
         {

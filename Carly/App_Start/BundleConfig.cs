@@ -19,6 +19,10 @@ namespace Carly
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
 
+            bundles.Add(new ScriptBundle("~/bundles/graph").Include(
+                       "~/Scripts/graph/g*"));
+
+
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
@@ -33,8 +37,8 @@ namespace Carly
                       "~/Content/carly.css", "~/Content/bootstrap-darkly.css",
                       "~/Content/site.css"));
 
-            bundles.Add(new StyleBundle("~/Content/3d").Include(
-                      "~/Content/3d/sequences.css", "~/Content/3d/normalize.css"));
+            bundles.Add(new StyleBundle("~/Content/graph").Include(
+                      "~/Content/graph.css"));
 
 
             bundles.Add(new StyleBundle("~/Content/lightbox").Include(
