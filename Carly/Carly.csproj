@@ -246,6 +246,10 @@
     <Compile Include="Migrations\201710081516173_deleteTheCarDetailsTable.Designer.cs">
       <DependentUpon>201710081516173_deleteTheCarDetailsTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201710091922386_DelteAdminTable.cs" />
+    <Compile Include="Migrations\201710091922386_DelteAdminTable.Designer.cs">
+      <DependentUpon>201710091922386_DelteAdminTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Admin.cs" />
@@ -646,6 +650,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201710081516173_deleteTheCarDetailsTable.resx">
       <DependentUpon>201710081516173_deleteTheCarDetailsTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710091922386_DelteAdminTable.resx">
+      <DependentUpon>201710091922386_DelteAdminTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
