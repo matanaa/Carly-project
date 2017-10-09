@@ -194,8 +194,7 @@ namespace Carly.Controllers
 
         public JsonResult BrandsStatistics()
         {
-            var brands = db.Degems.GroupBy(x=>new { x.Brand.BrandName }).Select(g=>new { label =g.Key.BrandName, count = g.Count()});
-                //Comments.GroupBy(x => new { x.PublishedDate.Year, x.PublishedDate.Month }).Select(g => new { Key = g.Key.Year + "" + g.Key.Month, Count = g.Count() });
+            var brands = db.Degems.GroupBy(x=>new { x.Brand.BrandName }).Select(g=>new { label =g.Key.BrandName, count = g.Sum(am => am.Quantity) });
             if (brands.Count() > 0)
             {
                 string json = JsonConvert.SerializeObject(brands.ToArray());
@@ -206,8 +205,7 @@ namespace Carly.Controllers
 
         public JsonResult CountryStatistics()
         {
-            var brands = db.Degems.GroupBy(x => new { x.Brand.OriginCountry }).Select(g => new { label = g.Key.OriginCountry, count = g.Count() });
-            //Comments.GroupBy(x => new { x.PublishedDate.Year, x.PublishedDate.Month }).Select(g => new { Key = g.Key.Year + "" + g.Key.Month, Count = g.Count() });
+            var brands = db.Degems.GroupBy(x => new { x.Brand.OriginCountry }).Select(g => new { label = g.Key.OriginCountry, count = g.Sum(am=>am.Quantity) });
             if (brands.Count() > 0)
             {
                 string json = JsonConvert.SerializeObject(brands.ToArray());
@@ -215,7 +213,16 @@ namespace Carly.Controllers
             }
             return Json("{}");
         }
-
+        public JsonResult ColorStatistics()
+        {
+            var brands = db.Degems.GroupBy(x => new { x.Color }).Select(g => new { label = g.Key.Color, count = g.Sum(am => am.Quantity) });
+            if (brands.Count() > 0)
+            {
+                string json = JsonConvert.SerializeObject(brands.ToArray());
+                return Json(brands.ToList(), JsonRequestBehavior.AllowGet);
+            }
+            return Json("{}");
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)
