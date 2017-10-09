@@ -134,3 +134,8 @@
     display: -webkit-inline-box !important;
 
 }
+
+video {
+    border: 2px solid;
+    border-radius: 30px 30px 30px 30px;
+}
