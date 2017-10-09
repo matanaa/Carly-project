@@ -46,5 +46,10 @@ namespace Carly.Controllers
 
             return View();
         }
+
+        public ActionResult CarChart()
+        {
+            return View();
+        }
     }
 }

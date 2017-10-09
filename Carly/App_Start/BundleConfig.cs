@@ -33,6 +33,9 @@ namespace Carly
                       "~/Content/carly.css", "~/Content/bootstrap-darkly.css",
                       "~/Content/site.css"));
 
+            bundles.Add(new StyleBundle("~/Content/3d").Include(
+                      "~/Content/3d/sequences.css", "~/Content/3d/normalize.css"));
+
 
             bundles.Add(new StyleBundle("~/Content/lightbox").Include(
                       "~/Content/lightbox2/lightbox.min.css"));

@@ -264,6 +264,7 @@
     <Content Include="App_Data\Carly.Models.CarlyContext_log.ldf">
       <DependentUpon>Carly.Models.CarlyContext.mdf</DependentUpon>
     </Content>
+    <Content Include="Content\normalize.css" />
     <Content Include="Content\bootstrap-Darkly.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
@@ -449,6 +450,8 @@
     <Content Include="Content\DataTables\css\semanticui.scss" />
     <Content Include="Content\DataTables\css\mixins.scss" />
     <Content Include="Content\DataTables\css\common.scss" />
+    <Content Include="Content\CSV\visit-sequences.csv" />
+    <Content Include="Scripts\Book1.csv" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap.js" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap.min.js" />
@@ -597,8 +600,11 @@
     <Content Include="Views\Comments\Details.cshtml" />
     <Content Include="Views\Comments\Edit.cshtml" />
     <Content Include="Views\Comments\Index.cshtml" />
+    <Content Include="Views\Home\CarChart.cshtml" />
+    <Content Include="Scripts\visit-sequences.csv" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Content\3d\" />
     <Folder Include="Content\lightbox2\" />
     <Folder Include="Content\Video\" />
     <Folder Include="obj\" />
