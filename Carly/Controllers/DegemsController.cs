@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using Carly.Models;
 using Newtonsoft.Json;
+using BayesSharp;
 
 namespace Carly.Controllers
 {
@@ -19,10 +20,8 @@ namespace Carly.Controllers
         public ActionResult Index()
         {
             var degems = db.Degems.Include(d => d.Brand);
-
-            //if (User.IsInRole("Admin"))
+            
                 return View(degems.ToList());
-         //   return View("ReadOnlyIndex", degems.ToList());
 
         }
 
@@ -54,32 +53,64 @@ namespace Carly.Controllers
                     Color = c.Color,
                     Quantity = c.Quantity
                 });
-            //.CarDetails.AddRange(carList.Distinct());
-            //db.SaveChanges();
+
             degemList.AddRange(DegemQry.Distinct());
             ViewBag.degemList= degemList;
             ViewBag.carList = carList;
 
-            //get the data to table
-            
-            /*var cars = from b in db.CarDetails select b;
-            if (ColorSearchString == null)
-            {
-                carList = carList.Where(b => b.Color.Contains(ColorSearchString));
-            }
 
-            if (!String.IsNullOrEmpty(BrandSearchString))
-            {
-                cars = cars.Where(b => b.BrandName == BrandSearchString);
-            }
-
-            if (!String.IsNullOrEmpty(ModelSearchString))
-            {
-                cars = cars.Where(b => b.DegemName == ModelSearchString);
-            }*/
 
             return View(carList);
         }
+
+        // GET: Degems/Search
+        public ActionResult algo()
+        {
+            var bayesCLS = new BayesSimpleTextClassifier(); //Naive Bayes object https://github.com/afonsof/BayesSharp
+            var degems = db.Degems.Include(d => d.Brand);// take list of all cars
+            List<string> goodCar = new List<string>();//list of words for good car TODO:take from DB
+            List<string> badCar = new List<string>();//list of words for bad car TODO:take from DB
+            //testing add some words
+            goodCar.Add("good car");
+            goodCar.Add("great!");
+            goodCar.Add("what a wonderfull piece");
+            badCar.Add("bad car");
+
+            foreach (var good in goodCar)//lets train the good part
+            {
+                bayesCLS.Train("good", good);
+            }
+            foreach (var bad in badCar)//lets train the bad part
+            {
+                bayesCLS.Train("bad", bad);
+            }
+            var maxScore = -1.0;//save the computed score
+            var  favoriteCar=new Degem();//save the bast car
+            foreach (var car in degems)// move on each car and check the score
+            {
+                //save the score
+                var good = 0.0;
+                var bad = 0.0;
+                foreach (var p in car.Comments)// move on each post and check the score
+                {
+                    var result = bayesCLS.Classify(p.ContentInfo);//:)
+                    if (result.ContainsKey("good")) { //check if have any resule
+                        good += result["good"]/car.Comments.Count();//if yes normelaize it and save it
+                    }
+                    if (result.ContainsKey("bad"))
+                    {
+                        bad += result["bad"] / car.Comments.Count();
+                    }
+                }
+                if (good - bad > maxScore)//check the current car score
+                {
+                    maxScore = good - bad;
+                     favoriteCar = car;//if is max save it
+                }
+            }
+            return View("Details", favoriteCar);//return the bast car
+        }
+
 
         // GET: Degems/Details/5
         public ActionResult Details(int? id)
