@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Carly.Models;
+using Newtonsoft.Json;
 
 namespace Carly.Controllers
 {
@@ -190,6 +191,19 @@ namespace Carly.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
+        public JsonResult BrandsStatistics()
+        {
+            var brands = db.Degems.GroupBy(x=>new { x.Brand.BrandName }).Select(g=>new { label =g.Key.BrandName, count = g.Count()});
+                //Comments.GroupBy(x => new { x.PublishedDate.Year, x.PublishedDate.Month }).Select(g => new { Key = g.Key.Year + "" + g.Key.Month, Count = g.Count() });
+            if (brands.Count() > 0)
+            {
+                string json = JsonConvert.SerializeObject(brands.ToArray());
+                return Json(brands.ToList(), JsonRequestBehavior.AllowGet);
+            }
+            return Json("{}");
+        }
+
 
         protected override void Dispose(bool disposing)
         {
