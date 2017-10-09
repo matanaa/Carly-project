@@ -605,6 +605,8 @@
     <Content Include="Views\Comments\Edit.cshtml" />
     <Content Include="Views\Comments\Index.cshtml" />
     <Content Include="Views\Home\CarChart.cshtml" />
+    <Content Include="Views\Home\CountryChart.cshtml" />
+    <Content Include="Views\Home\ColorChart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\lightbox2\" />

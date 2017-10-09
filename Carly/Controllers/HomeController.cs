@@ -51,5 +51,13 @@ namespace Carly.Controllers
         {
             return View();
         }
+        public ActionResult CountryChart()
+        {
+            return View();
+        }
+        public ActionResult ColorChart()
+        {
+            return View();
+        }
     }
 }
