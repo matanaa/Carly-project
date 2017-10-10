@@ -207,6 +207,7 @@
     <Compile Include="Controllers\DegemsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\TrainingDatasController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -254,6 +255,10 @@
     <Compile Include="Migrations\201710091922386_DelteAdminTable.Designer.cs">
       <DependentUpon>201710091922386_DelteAdminTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201710100559547_tainingfata.cs" />
+    <Compile Include="Migrations\201710100559547_tainingfata.Designer.cs">
+      <DependentUpon>201710100559547_tainingfata.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Admin.cs" />
@@ -264,6 +269,7 @@
     <Compile Include="Models\Degem.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\TrainingData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -611,6 +617,11 @@
     <Content Include="Views\Home\CarChart.cshtml" />
     <Content Include="Views\Home\CountryChart.cshtml" />
     <Content Include="Views\Home\ColorChart.cshtml" />
+    <Content Include="Views\TrainingDatas\Create.cshtml" />
+    <Content Include="Views\TrainingDatas\Delete.cshtml" />
+    <Content Include="Views\TrainingDatas\Details.cshtml" />
+    <Content Include="Views\TrainingDatas\Edit.cshtml" />
+    <Content Include="Views\TrainingDatas\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\lightbox2\" />
@@ -659,6 +670,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201710091922386_DelteAdminTable.resx">
       <DependentUpon>201710091922386_DelteAdminTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710100559547_tainingfata.resx">
+      <DependentUpon>201710100559547_tainingfata.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

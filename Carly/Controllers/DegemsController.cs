@@ -68,13 +68,9 @@ namespace Carly.Controllers
         {
             var bayesCLS = new BayesSimpleTextClassifier(); //Naive Bayes object https://github.com/afonsof/BayesSharp
             var degems = db.Degems.Include(d => d.Brand);// take list of all cars
-            List<string> goodCar = new List<string>();//list of words for good car TODO:take from DB
-            List<string> badCar = new List<string>();//list of words for bad car TODO:take from DB
-            //testing add some words
-            goodCar.Add("good car");
-            goodCar.Add("great!");
-            goodCar.Add("what a wonderfull piece");
-            badCar.Add("bad car");
+            List<string> goodCar = db.TrainingDatas.Where(g => g.title.Equals("good")).Select(g=>g.title).ToList();//list of words for good car TODO:take from DB
+            List<string> badCar = db.TrainingDatas.Where(g => g.title.Equals("bad")).Select(g => g.title).ToList();//list of words for bad car TODO:take from DB
+
 
             foreach (var good in goodCar)//lets train the good part
             {

@@ -12,5 +12,6 @@ namespace Carly.Models
         public DbSet<Degem> Degems { get; set; }
         public DbSet<Branch> Branches { get; set; }
         public DbSet<Comment> Comment { get; set; }
+        public DbSet<TrainingData> TrainingDatas { get; set; }
     }
 }
