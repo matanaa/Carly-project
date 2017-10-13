@@ -5,67 +5,45 @@
 }
 
 
-<h2>Our Inventory</h2>
+<h2>This Is How We Do</h2>
+
+<br /><br />
+
+<div class="about">
+
+    <h4> <b>About Carly</b></h4>
+    <p>
+        Carly rental car was founded in 2017 in Givatayim, israel, by the tree partners: Snir Balgali, Matan Akrabi and Nofar Levi
+        and started out with a fleet of just three vehicles.
+        As one of the first and most important international car rental companies in the world
+        -  with over 100 ‎years in the business - we have earned a trusted reputation as a global leading car rental provider.
+        ‎Always at the forefront of the industry, we were the first car rental company with a website and the first ‎to accept mobile reservations.
+        Today we are present in over 105 countries with branches in over 4,000 locations.
+        You will be able to ‎find our Carly car rental services internationally, in almost every major city and tourist destination ‎worldwide
+        and at convenient locations such as airports, train stations, cruise ports, and hotels.‎
+    </p>
+
+    <h5> <b><u>Our Expansion Plan</u></b></h5>
+    <p>
+        Expanding to the US in 2011, Carly rent a car is continually growing and broadening its services and ‎fleet throughout the country.
+        We look forward to offering affordable, premium car rental to more and ‎more US locations,
+        so keep checking back to see if we have arrived at your desired destination. ‎
+        Whether on business or pleasure, our top quality fleet features vehicles for just about every occasion‎
+    </p>
+    <h5> <b><u>Our favourite Car</u></b></h5>
+    <p>
+        In Carly company, we use very smart algorithm, which can tell you about our most popular car.
+        also, you should know that you and other users, You are the ones who determine the rating.
+        How? Great question! our algorithm is learns your comments, along with many other comments.
+        Depending on the content of your comment, we'll know whether it's positive or negative. 
+        When we weigh all the data, we know how to rank which vehicle most users prefer. 
+        try it now!
+        <br/><br />
+
+        <h6>Current top car: <a href="~/Degems/algo">Click Here!</a></h6>
+        <h6>Write a comment: <a href="~/Degems">Click Here!</a></h6>
+    </p>
 
 
-<div id="tableShow">
-    <table id="allCars" class="table table-hover table-bordered " cellspacing="0" width="100%">
-        <thead>
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.BrandName)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.OriginCountry)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.DegemName)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Color)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Quantity)
-                </th>
-          
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in (ViewBag.carDetails))
-            {
-                {
-                    <tr>
-                        <td>
-                            @(item.BrandName)
-                        </td>
-                        <td>
-                            @(item.OriginCountry)
-                        </td>
-                        <td>
-                            @(item.DegemName)
-                        </td>
-                        <td>
-                            @(item.Color)
-                        </td>
-                        <td>
-                            @(item.Quantity)
-                        </td>
-                    </tr>
-                }
-            }
-        </tbody>
-    </table>
 </div>
 
-    @section scripts
-{
-        <script>
-            $(document).ready(function () {
-                var tbt = $('#allCars').DataTable(
-                    {
-                        "autoWidth": true
-                    });
-                tbt.columns.adjust().draw();
-            });
-        </script>
-    }

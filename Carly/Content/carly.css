@@ -139,3 +139,15 @@ video {
     border: 2px solid;
     border-radius: 30px 30px 30px 30px;
 }
+
+.about {
+    column-count: 3;
+    width: 90%;
+    column-gap: 40px;
+    column-rule-style: solid;
+    column-rule-width: 1px;
+    column-rule-color: lightblue;
+}
+h4 {
+    column-span: unset;
+}
