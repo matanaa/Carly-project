@@ -7,62 +7,14 @@
 <h2>Index</h2>
 
 
-<div id="tableShow">
-    <table id="Users" class="table table-hover table-bordered " cellspacing="0" width="100%">
-        <thead>
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.userName)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.email)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.roleName)
-                </th>
-               <th></th>
-            </tr>
-        </thead>
-       <tbody>
-    @foreach (var item in (ViewBag.UserList))
-    {
-        {
-            <tr>
-                <td>
-                    @(item.userName)
-                </td>
-                <td>
-                    @(item.email)
-                </td>
-                <td>
-                    @(item.roleName)
-                </td>
-              
+<section id="AdminArea">
+    <div>
+        <a href="/Admin/AdminList"><i class="glyphicon glyphicon-user"></i> Admin privilrages</a><br />
+        <a href="/TrainingDatas/"><span class="glyphicon glyphicon-list-alt"></span> Traing data Area</a><br />
+        <a href="/comments/"><i class="glyphicon glyphicon-comment"></i> Comments Area</a><br />
+
+    </div>
+</section>
 
 
-                <td>
-                    <a href="@Url.Action("Edit", new { id = item.email })" style="text-decoration: none">
-                        <img src="@Url.Content("~/Content/img/edit-24.ico")" height="25" width="25" />
-                    </a>
-                    <a href="@Url.Action("Details", new { id = item.userName})" style="text-decoration: none">
-                        <img src="@Url.Content("~/Content/img/view-details-24.ico")" height="25" width="25" />
-                    </a>
-              
-                </td>
-            </tr>
-        }
-    }
-       </tbody>
-    </table>
-
-
-    @section scripts
-{
-        <script>
-            $(document).ready(function () {
-                $('#Users').DataTable();
-            });
-        </script>
-    }
-</div>
 

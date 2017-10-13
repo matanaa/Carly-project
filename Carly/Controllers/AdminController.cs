@@ -11,9 +11,14 @@ namespace Carly.Controllers
 {
     public class AdminController : Controller
     {
- 
         // GET: Admin
         public ActionResult Index()
+        {
+            return View();
+        }
+    
+    // GET: Admin
+    public ActionResult AdminList()
         {
             
            ApplicationDbContext db = new ApplicationDbContext();
