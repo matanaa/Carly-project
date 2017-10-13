@@ -71,6 +71,7 @@
             -moz-border-radius: 11px;
             -webkit-border-radius: 11px;
         }
+       
 
         .comments article header {
             display: table-cell;
@@ -81,7 +82,7 @@
             .comments article header a {
                 display: block;
                 font-weight: bold;
-                color: #000;
+                color: #ffffff;
             }
 
                 .comments article header a:hover {

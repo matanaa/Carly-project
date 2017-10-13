@@ -5,22 +5,22 @@
 @Styles.Render("~/Content/lightbox")
 <h2>@Html.DisplayFor(model => model.Brand.BrandName) @Html.DisplayFor(model => model.DegemName)</h2>
 <div>
-    <h4><b>@Html.DisplayNameFor(model => model.Color):</b> <row style="text-shadow: 1px 1px @Html.DisplayFor(model => model.Color);" >@Html.DisplayFor(model => model.Color)</row></h4>
+    <h4><b>@Html.DisplayNameFor(model => model.Color):</b> <row style="text-shadow: 1px 1px @Html.DisplayFor(model => model.Color);">@Html.DisplayFor(model => model.Color)</row></h4>
     <h4><b>@Html.DisplayNameFor(model => model.Quantity):</b> @Html.DisplayFor(model => model.Quantity)</h4>
-   
+
     <section id="video">
         @if (!Model.VideoLink.IsEmpty())
         {
             <hr />
             <video controls="controls" class="center-block " autoplay>
-                <source src="@Html.DisplayFor(model => model.VideoLink)" type="video/mp4" >
+                <source src="@Html.DisplayFor(model => model.VideoLink)" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
         }
 
     </section>
-    <section id="images">        
-        <div >
+    <section id="images">
+        <div>
             @if (!Model.ImagesLinks.IsEmpty())
             {
                 <hr>
@@ -36,7 +36,7 @@
     </section>
 
     <section id="comments-@Html.DisplayFor(Model => Model.Comments)" class="comments">
-        
+
         <h3>Comments</h3>
         @foreach (var comment in Model.Comments)
         {
@@ -45,49 +45,53 @@
             <article>
                 <header>
                     <b>@Html.DisplayFor(modelItem => comment.Author)</b>
+                    @if (User.IsInRole("Admin"))
+                {
+
+                        <a href="~/Comments/delete/@comment.ID" class="Remove_comments" ><span class="glyphicon glyphicon-remove"></span>Remove</a>
+
+
+                    }
                 </header>
                 <p>@Html.DisplayFor(modelItem => comment.ContentInfo) </p>
-            </article>
-            if (User.IsInRole("Admin"))
+
+                </article>
+
+        }
+
+        </section>
+
+
+
+        <section id="comments" class="comments-form">
+
+            @using (Html.BeginForm("Create", "Comments"))
             {
-                <div id="RemoveBtn">
-                    <a href="~/Comments/delete/@comment.ID" class="btn btn-danger">Remove</a>
-                </div>
+                @Html.AntiForgeryToken()
+                <h3>Post a comment</h3>
+                <p>
+                    <label for="ContentInfo">Comment</label>
+                    <textarea name="ContentInfo" id="ContentInfo" required=""></textarea>
+                </p>
+
+                <p><input type="submit" value="Post comment"></p>
+                <input type="hidden" name="DegemID" id="DegemID" value="@Html.DisplayFor(Model => Model.DegemId)" />
+
             }
-        }
-
-    </section>
 
 
+        </section>
 
-    <section id="comments" class="comments-form">
-      
-        @using (Html.BeginForm("Create", "Comments")) {
-        @Html.AntiForgeryToken()
-        <h3>Post a comment</h3>
+        <div class="fb-comments" data-href="@Request.Url.AbsoluteUri" data-colorscheme="dark" data-numposts="5"></div>
+        </div>
         <p>
-            <label for="ContentInfo">Comment</label>
-            <textarea name="ContentInfo" id="ContentInfo" required=""></textarea>
+            @Html.ActionLink("Back to List", "Index")
         </p>
-
-        <p><input type="submit" value="Post comment"></p>
-        <input type="hidden" name="DegemID" id="DegemID" value="@Html.DisplayFor(Model => Model.DegemId)" />
-     
-        }
-        
-
-    </section>
-
-    <div class="fb-comments" data-href="@Request.Url.AbsoluteUri" data-colorscheme="dark" data-numposts="5"></div>
-</div>
-<p>
-    @Html.ActionLink("Back to List", "Index")
-</p>
-@Scripts.Render("~/bundles/lightbox")
-<script>
-$(function(){
-    $('#RemoveBtn').click(function () {
-        $.load('');
-    });
-});
-</script>
+        @Scripts.Render("~/bundles/lightbox")
+        <script>
+            $(function () {
+                $('#RemoveBtn').click(function () {
+                    $.load('');
+                });
+            });
+        </script>
