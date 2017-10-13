@@ -48,6 +48,12 @@
                 </header>
                 <p>@Html.DisplayFor(modelItem => comment.ContentInfo) </p>
             </article>
+            if (User.IsInRole("Admin"))
+            {
+                <div id="RemoveBtn">
+                    <a href="~/Comments/delete/@comment.ID" class="btn btn-danger">Remove</a>
+                </div>
+            }
         }
 
     </section>
@@ -78,3 +84,10 @@
     @Html.ActionLink("Back to List", "Index")
 </p>
 @Scripts.Render("~/bundles/lightbox")
+<script>
+$(function(){
+    $('#RemoveBtn').click(function () {
+        $.load('');
+    });
+});
+</script>

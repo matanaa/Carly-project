@@ -17,6 +17,7 @@ namespace Carly.Models
         //[Required]
         public string Author { get; set; }
 
+        [Display (Name = "Content")]
         [Required]
         public string ContentInfo { get; set; }
 

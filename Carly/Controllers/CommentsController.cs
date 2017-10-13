@@ -98,6 +98,10 @@ namespace Carly.Controllers
         // GET: Comments/Delete/5
         public ActionResult Delete(int? id)
         {
+            if (!User.IsInRole("Admin"))
+            {
+                return new HttpUnauthorizedResult("Unauthorized");
+            }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -118,7 +122,7 @@ namespace Carly.Controllers
             Comment comment = db.Comment.Find(id);
             db.Comment.Remove(comment);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "Degems");
         }
 
         protected override void Dispose(bool disposing)
