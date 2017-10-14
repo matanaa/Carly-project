@@ -17,10 +17,18 @@ namespace Carly.Controllers
         // GET: TrainingDatas
         public ActionResult Index()
         {
+            if (!User.IsInRole("Admin"))
+            {
+                return new HttpUnauthorizedResult("Unauthorized");
+            }
             return View(db.TrainingDatas.ToList());
         }
         public ActionResult goodList()
         {
+            if (!User.IsInRole("Admin"))
+            {
+                return new HttpUnauthorizedResult("Unauthorized");
+            }
             return View("Index", db.TrainingDatas.Where(g => g.title.Equals("good")).ToList());
             
         }
@@ -28,6 +36,10 @@ namespace Carly.Controllers
         // GET: TrainingDatas/Details/5
         public ActionResult Details(int? id)
         {
+            if (!User.IsInRole("Admin"))
+            {
+                return new HttpUnauthorizedResult("Unauthorized");
+            }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -43,6 +55,10 @@ namespace Carly.Controllers
         // GET: TrainingDatas/Create
         public ActionResult Create()
         {
+            if (!User.IsInRole("Admin"))
+            {
+                return new HttpUnauthorizedResult("Unauthorized");
+            }
             return View();
         }
 
@@ -53,6 +69,10 @@ namespace Carly.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "id,title,word")] TrainingData trainingData)
         {
+            if (!User.IsInRole("Admin"))
+            {
+                return new HttpUnauthorizedResult("Unauthorized");
+            }
             if (ModelState.IsValid)
             {
                 db.TrainingDatas.Add(trainingData);
@@ -66,6 +86,10 @@ namespace Carly.Controllers
         // GET: TrainingDatas/Edit/5
         public ActionResult Edit(int? id)
         {
+            if (!User.IsInRole("Admin"))
+            {
+                return new HttpUnauthorizedResult("Unauthorized");
+            }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -85,6 +109,10 @@ namespace Carly.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "id,title,word")] TrainingData trainingData)
         {
+            if (!User.IsInRole("Admin"))
+            {
+                return new HttpUnauthorizedResult("Unauthorized");
+            }
             if (ModelState.IsValid)
             {
                 db.Entry(trainingData).State = EntityState.Modified;
@@ -97,6 +125,10 @@ namespace Carly.Controllers
         // GET: TrainingDatas/Delete/5
         public ActionResult Delete(int? id)
         {
+            if (!User.IsInRole("Admin"))
+            {
+                return new HttpUnauthorizedResult("Unauthorized");
+            }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -114,6 +146,10 @@ namespace Carly.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            if (!User.IsInRole("Admin"))
+            {
+                return new HttpUnauthorizedResult("Unauthorized");
+            }
             TrainingData trainingData = db.TrainingDatas.Find(id);
             db.TrainingDatas.Remove(trainingData);
             db.SaveChanges();

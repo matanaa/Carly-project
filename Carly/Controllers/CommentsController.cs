@@ -17,6 +17,10 @@ namespace Carly.Controllers
         // GET: Comments
         public ActionResult Index()
         {
+            if (!User.IsInRole("Admin"))
+            {
+                return new HttpUnauthorizedResult("Unauthorized");
+            }
             var comment = db.Comment.Include(c => c.CommentDegem);
             return View(comment.ToList());
         }
@@ -24,6 +28,10 @@ namespace Carly.Controllers
         // GET: Comments/Details/5
         public ActionResult Details(int? id)
         {
+            if (!User.IsInRole("Admin"))
+            {
+                return new HttpUnauthorizedResult("Unauthorized");
+            }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -64,7 +72,12 @@ namespace Carly.Controllers
 
         // GET: Comments/Edit/5
         public ActionResult Edit(int? id)
+
         {
+            if (!User.IsInRole("Admin"))
+            {
+                return new HttpUnauthorizedResult("Unauthorized");
+            }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -85,6 +98,10 @@ namespace Carly.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ID,DegemID,Author,ContentInfo")] Comment comment)
         {
+            if (!User.IsInRole("Admin"))
+            {
+                return new HttpUnauthorizedResult("Unauthorized");
+            }
             if (ModelState.IsValid)
             {
                 db.Entry(comment).State = EntityState.Modified;
@@ -98,6 +115,7 @@ namespace Carly.Controllers
         // GET: Comments/Delete/5
         public ActionResult Delete(int? id)
         {
+
             if (!User.IsInRole("Admin"))
             {
                 return new HttpUnauthorizedResult("Unauthorized");
@@ -119,6 +137,10 @@ namespace Carly.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            if (!User.IsInRole("Admin"))
+            {
+                return new HttpUnauthorizedResult("Unauthorized");
+            }
             Comment comment = db.Comment.Find(id);
             db.Comment.Remove(comment);
             db.SaveChanges();
