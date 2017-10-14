@@ -164,3 +164,10 @@ video {
     }
 
 
+.tableOverFit{
+        white-space: nowrap;
+    overflow: hidden;
+    width: 180px;
+    height: 30px;
+    text-overflow: ellipsis; 
+}

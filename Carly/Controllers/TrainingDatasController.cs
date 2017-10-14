@@ -23,6 +23,33 @@ namespace Carly.Controllers
             }
             return View(db.TrainingDatas.ToList());
         }
+
+        public ActionResult LoadFromFile()
+        {
+            if (!User.IsInRole("Admin"))
+            {
+                return new HttpUnauthorizedResult("Unauthorized");
+            }
+            var fileContents = System.IO.File.ReadAllText(Server.MapPath("~/Content/load.csv"));
+            foreach (var line in fileContents.Split('\n'))
+            {
+
+                var arr = line.ToString().Split('~');
+                TrainingData tmp = new TrainingData();
+                if (arr.Length==2){ 
+                tmp.title = arr[0];
+                tmp.word = arr[1];
+                db.TrainingDatas.Add(tmp);
+            }
+                //db.SaveChanges();
+
+            }
+            db.SaveChanges();
+
+            return Content(fileContents);
+
+            //return View(db.TrainingDatas.ToList());
+        }
         public ActionResult goodList()
         {
             if (!User.IsInRole("Admin"))
