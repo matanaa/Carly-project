@@ -41,13 +41,14 @@
 
 
                 <td>
-                    <a href="@Url.Action("Edit", new { id = item.email })" style="text-decoration: none">
+                    <a href="@Url.Action("Edit", new { id = item.userName })" style="text-decoration: none">
                         <img src="@Url.Content("~/Content/img/edit-24.ico")" height="25" width="25" />
                     </a>
-                    <a href="@Url.Action("Details", new { id = item.userName})" style="text-decoration: none">
-                        <img src="@Url.Content("~/Content/img/view-details-24.ico")" height="25" width="25" />
+                                     
+                    <a href="@Url.Action("Delete", new { id = item.userName })" style="text-decoration: none">
+                        <img src="@Url.Content("~/Content/img/delete-24.ico")" height="25" width="25" />
                     </a>
-              
+                    
                 </td>
             </tr>
         }
