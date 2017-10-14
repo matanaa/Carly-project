@@ -279,6 +279,7 @@
       <DependentUpon>Carly.Models.CarlyContext.mdf</DependentUpon>
     </Content>
     <Content Include="Content\graph.css" />
+    <Content Include="Content\img\bluecar.png" />
     <Content Include="Content\img\c.png" />
     <Content Include="Content\normalize.css" />
     <Content Include="Content\bootstrap-Darkly.css" />

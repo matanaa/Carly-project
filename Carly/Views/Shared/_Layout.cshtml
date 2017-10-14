@@ -51,7 +51,7 @@
     </div>
     <div class="container body-content">
         <div class="page-header">
-            <img src="~/Content/img/CarlyTrans.png" alt="Carly Logo" height="180" width="500" align="middle" />
+            <img id="carly" src="~/Content/img/CarlyTrans.png" alt="Carly Logo" height="180" width="500" align="middle" />
         </div>
     </div>
     <div class="container body-content">
@@ -65,7 +65,7 @@
                     <li><a href="~/Home/CarChart">Brand Statistics</a></li>
                     <li><a href="~/Home/CountryChart">Country Statistics</a></li>
                     <li><a href="~/Home/ColorChart">Color Statistics</a></li>
-                 
+
                 </ul>
                 <br />
                 <br />
@@ -73,6 +73,8 @@
             <section>
                 <div class="fb-page" data-href="https://www.facebook.com/carlyProject/" data-tabs="timeline" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/carlyProject/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/carlyProject/">Carly</a></blockquote></div>
             </section>
+            @*<canvas id="myCanvas" width="350" height="250"></canvas>*@
+
         </aside>
     </div>
     <hr />
@@ -92,12 +94,77 @@
                      data-uid="awcc1477324979360"></div>
                 <script type="text/javascript" src="http://oap.accuweather.com/launch.js">
                 </script>
+                <canvas id="cvs" width="500" height="100">
+                    Your browser does not support the HTML 5 Canvas.
+                </canvas>
             </div>
         </footer>
     </div>
 
+
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+
+    @*<script>
+        var canvas = document.getElementById('myCanvas');
+        var context = canvas.getContext('2d');
+        var imageObj = new Image();
+
+        imageObj.onload = function () {
+            context.drawImage(imageObj, 0, 0);
+            context.font = "40pt Calibri Orange";
+            context.fillText("C!", 20, 20);
+        };
+        imageObj.src = 'https://images.vexels.com/media/users/3/135596/isolated/lists/1d14a37e1154a3e50ac7021f6240967a-car-silhouette-transportation.png';
+    </script>*@
+
+    <script type="text/javascript">
+        var context;
+        var text = "";
+        var textDirection ="";
+
+        $(function()
+        {
+            context = document.getElementById("cvs").getContext("2d");
+            setInterval("animate()", 30);
+
+            textDirection ="right";
+            textXpos = 5;
+            text = "C";
+        });
+
+        function animate() {
+            // Clear screen
+            context.clearRect(0, 0, 50, 50);
+            context.globalAlpha = 1;
+            context.fillStyle = '#222222';
+            context.fillRect(0, 0, 500, 500);
+
+            var metrics = context.measureText(text);
+            var textWidth = metrics.width;
+
+            if (textDirection == "right") {
+                textXpos += 10;
+
+                if (textXpos > 500 - textWidth) {
+                    textDirection = "left";
+                }
+            }
+            else {
+                textXpos -= 10;
+
+                if (textXpos < 10) {
+                    textDirection = "right";
+                }
+            }
+
+            context.font = '50px _sans';
+            context.fillStyle = '#FFFFFF';
+            context.textBaseline = 'bottom';
+            context.fillText  ( text, textXpos, 50);
+          }
+    </script>
+
 </body>
 </html>
