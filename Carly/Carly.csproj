@@ -624,6 +624,7 @@
     <Content Include="Views\TrainingDatas\Edit.cshtml" />
     <Content Include="Views\TrainingDatas\Index.cshtml" />
     <Content Include="Views\Admin\AdminList.cshtml" />
+    <Content Include="Views\Admin\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\lightbox2\" />
