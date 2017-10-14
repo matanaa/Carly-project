@@ -9,9 +9,9 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table tableOverFit">
+<table id="TrainingData" class="table table-hover table-bordered" cellspacing="0" width="100%">
     <tr>
-        <th>
+        <th width="10%">
             @Html.DisplayNameFor(model => model.title)
         </th>
         <th>
@@ -20,20 +20,26 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.word)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id })
-        </td>
-    </tr>
+@foreach (var item in Model)
+{
+    <tbody>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.word)
+            </td>
+            <td width="20%">
+                @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.id })
+            </td>
+        </tr>
+    </tbody>
 }
 
 </table>
+
+
+}

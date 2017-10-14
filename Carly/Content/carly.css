@@ -164,10 +164,13 @@ video {
     }
 
 
-.tableOverFit{
-        white-space: nowrap;
+#TrainingData > tbody > tr > td {
+    white-space: nowrap;
+    text-overflow: ellipsis;
     overflow: hidden;
-    width: 180px;
-    height: 30px;
-    text-overflow: ellipsis; 
-}
+    text-overflow: ellipsis;
+    max-width: 70px;
+    table-layout: fixed;
+    word-break: break-all;
+    word-wrap: break-word;
+  }
