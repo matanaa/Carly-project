@@ -4,8 +4,8 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
-
+<h2>Users and Roles</h2>
+ <br /><br />
 
 <div id="tableShow">
     <table id="Users" class="table table-hover table-bordered " cellspacing="0" width="100%">
@@ -20,7 +20,6 @@
                 <th>
                     @Html.DisplayNameFor(model => model.roleName)
                 </th>
-               <th></th>
             </tr>
         </thead>
        <tbody>
@@ -37,20 +36,7 @@
                 <td>
                     @(item.roleName)
                 </td>
-              
-
-
-                <td>
-                    <a href="@Url.Action("Edit", new { id = item.userName })" style="text-decoration: none">
-                        <img src="@Url.Content("~/Content/img/edit-24.ico")" height="25" width="25" />
-                    </a>
-                                     
-                    <a href="@Url.Action("Delete", new { id = item.userName })" style="text-decoration: none">
-                        <img src="@Url.Content("~/Content/img/delete-24.ico")" height="25" width="25" />
-                    </a>
-                    
-                </td>
-            </tr>
+          </tr>
         }
     }
        </tbody>
