@@ -259,6 +259,10 @@
     <Compile Include="Migrations\201710100559547_tainingfata.Designer.cs">
       <DependentUpon>201710100559547_tainingfata.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201710152015409_videosAndPhotos.cs" />
+    <Compile Include="Migrations\201710152015409_videosAndPhotos.Designer.cs">
+      <DependentUpon>201710152015409_videosAndPhotos.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Admin.cs" />
@@ -676,6 +680,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201710100559547_tainingfata.resx">
       <DependentUpon>201710100559547_tainingfata.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710152015409_videosAndPhotos.resx">
+      <DependentUpon>201710152015409_videosAndPhotos.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
