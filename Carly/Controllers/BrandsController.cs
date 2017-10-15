@@ -19,23 +19,20 @@ namespace Carly.Controllers
         // GET: Brands
         public ActionResult Index()
         {
-            //if (User.IsInRole("Admin"))
-                return View(db.Brands.ToList());
-            //return View("ReadOnlyIndex", db.Brands.ToList());
+            return View(db.Brands.ToList());
         }
 
         // GET: Brands
         public ActionResult brandTable()
         {
-                return View(db.Brands.ToList());
+            return View(db.Brands.ToList());
         }
         // GET: Brands
         public ActionResult countryTable()
         {
-            
+
             return View(db.Brands.ToList());
             //https://stackoverflow.com/questions/16480295/linq-group-by-and-order-by-in-c-sharp
-            // return View(qry);
         }
 
 

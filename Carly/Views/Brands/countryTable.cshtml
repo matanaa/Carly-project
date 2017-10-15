@@ -3,12 +3,12 @@
     Layout = null;
 }
 
-@foreach (var country in Model.GroupBy(g => g.OriginCountry))
+<!--GroupBy country Query-->
+@foreach (var country in Model.GroupBy(g => g.OriginCountry)) 
 {
     <h2>@country.Key <span class="badge badge-default badge-pill">@country.Count()</span></h2>
        
 
-    @*<p>Total count: @country.Count()</p>*@
     <table id="Brands-@country.Key" class="table table-hover table-bordered " cellspacing="0" width="100%">
         <thead>
             <tr>
@@ -29,18 +29,4 @@
             }
         </tbody>
     </table>
-
-
 }
-
-
-@*@foreach (var country in Model.GroupBy(g => g.OriginCountry))
-    {
-        <script>
-        $(document).ready(function () {
-            $('#Brands-@country.Key').DataTable();
-        });
-        </script>
-    }*@
-
-

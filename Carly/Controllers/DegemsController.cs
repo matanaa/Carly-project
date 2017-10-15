@@ -20,30 +20,31 @@ namespace Carly.Controllers
         public ActionResult Index()
         {
             var degems = db.Degems.Include(d => d.Brand);
-            
-                return View(degems.ToList());
+
+            return View(degems.ToList());
 
         }
 
         // GET: Degems/Search
         public ActionResult Search(string BrandSearchString, string ColorSearchString, string ModelSearchString, string CountrySearchString)
         {
-            
-               var degemList = new List<Brand>();
-            var carList = new List<CarDetails>();
-            // find all degems in the database
-            // for the droplinkbutton
 
+            var degemList = new List<Brand>();
+            var carList = new List<CarDetails>();
+
+            // find all degems in the database
+            // for the dropLinkButton
             var DegemQry = from s in db.Brands
                            orderby s.BrandName
                            select s;
 
             //join table of all cars-details
-                var allCars = (from b in db.Brands
+            var allCars = (from b in db.Brands
                            join m in db.Degems on b.id equals m.BrandID
-                               where ((String.IsNullOrEmpty(ColorSearchString)) || m.Color.Contains(ColorSearchString)) && ((String.IsNullOrEmpty(BrandSearchString) || b.id.ToString().Equals(BrandSearchString)) && ((String.IsNullOrEmpty(ModelSearchString) || m.DegemName.Contains(ModelSearchString)) && ((String.IsNullOrEmpty(CountrySearchString) || b.OriginCountry.Contains(CountrySearchString)))))
-                               select new { b.BrandName, b.OriginCountry, m.DegemName, m.Color, m.Quantity }).Distinct();
-            
+                           where ((String.IsNullOrEmpty(ColorSearchString)) || m.Color.Contains(ColorSearchString)) && ((String.IsNullOrEmpty(BrandSearchString) || b.id.ToString().Equals(BrandSearchString)) && ((String.IsNullOrEmpty(ModelSearchString) || m.DegemName.Contains(ModelSearchString)) && ((String.IsNullOrEmpty(CountrySearchString) || b.OriginCountry.Contains(CountrySearchString)))))
+                           select new { b.BrandName, b.OriginCountry, m.DegemName, m.Color, m.Quantity }).Distinct();
+
+            //add all the data to a list of "Car-Details"
             foreach (var c in allCars)
                 carList.Add(new CarDetails
                 {
@@ -55,10 +56,9 @@ namespace Carly.Controllers
                 });
 
             degemList.AddRange(DegemQry.Distinct());
-            ViewBag.degemList= degemList;
-            ViewBag.carList = carList;
 
-
+            ViewBag.degemList = degemList; //for the DropListButton
+            ViewBag.carList = carList; //trans the data in the JOIN table
 
             return View(carList);
         }
@@ -68,20 +68,20 @@ namespace Carly.Controllers
         {
             var bayesCLS = new BayesSimpleTextClassifier(); //Naive Bayes object https://github.com/afonsof/BayesSharp
             var degems = db.Degems.Include(d => d.Brand);// take list of all cars
-            List<string> goodCar = db.TrainingDatas.Where(g => g.title.Equals("good")).Select(g=>g.title).ToList();//list of words for good car TODO:take from DB
-            List<string> badCar = db.TrainingDatas.Where(g => g.title.Equals("bad")).Select(g => g.title).ToList();//list of words for bad car TODO:take from DB
+            List<string> goodCar = db.TrainingDatas.Where(g => g.title.Equals("good")).Select(g => g.title).ToList();//list of words for good car
+            List<string> badCar = db.TrainingDatas.Where(g => g.title.Equals("bad")).Select(g => g.title).ToList();//list of words for bad car 
 
 
-            foreach (var good in goodCar)//lets train the good part
+            foreach (var good in goodCar)// trains the good part
             {
                 bayesCLS.Train("good", good);
             }
-            foreach (var bad in badCar)//lets train the bad part
+            foreach (var bad in badCar)// trains the bad part
             {
                 bayesCLS.Train("bad", bad);
             }
             var maxScore = -1.0;//save the computed score
-            var  favoriteCar=new Degem();//save the bast car
+            var favoriteCar = new Degem();//save the bast car
             foreach (var car in degems)// move on each car and check the score
             {
                 //save the score
@@ -90,8 +90,9 @@ namespace Carly.Controllers
                 foreach (var p in car.Comments)// move on each post and check the score
                 {
                     var result = bayesCLS.Classify(p.ContentInfo);//:)
-                    if (result.ContainsKey("good")) { //check if have any resule
-                        good += result["good"]/car.Comments.Count();//if yes normelaize it and save it
+                    if (result.ContainsKey("good"))
+                    { //check if have any result
+                        good += result["good"] / car.Comments.Count();//if yes normelaize it and save it
                     }
                     if (result.ContainsKey("bad"))
                     {
@@ -101,7 +102,7 @@ namespace Carly.Controllers
                 if (good - bad > maxScore)//check the current car score
                 {
                     maxScore = good - bad;
-                     favoriteCar = car;//if is max save it
+                    favoriteCar = car;//if is max save it
                 }
             }
             return View("Details", favoriteCar);//return the bast car
@@ -218,38 +219,6 @@ namespace Carly.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-
-        public JsonResult BrandsStatistics()
-        {
-            var brands = db.Degems.GroupBy(x=>new { x.Brand.BrandName }).Select(g=>new { label =g.Key.BrandName, count = g.Sum(am => am.Quantity) });
-            if (brands.Count() > 0)
-            {
-                string json = JsonConvert.SerializeObject(brands.ToArray());
-                return Json(brands.ToList(), JsonRequestBehavior.AllowGet);
-            }
-            return Json("{}");
-        }
-
-        public JsonResult CountryStatistics()
-        {
-            var brands = db.Degems.GroupBy(x => new { x.Brand.OriginCountry }).Select(g => new { label = g.Key.OriginCountry, count = g.Sum(am=>am.Quantity) });
-            if (brands.Count() > 0)
-            {
-                string json = JsonConvert.SerializeObject(brands.ToArray());
-                return Json(brands.ToList(), JsonRequestBehavior.AllowGet);
-            }
-            return Json("{}");
-        }
-        public JsonResult ColorStatistics()
-        {
-            var brands = db.Degems.GroupBy(x => new { x.Color }).Select(g => new { label = g.Key.Color, count = g.Sum(am => am.Quantity) });
-            if (brands.Count() > 0)
-            {
-                string json = JsonConvert.SerializeObject(brands.ToArray());
-                return Json(brands.ToList(), JsonRequestBehavior.AllowGet);
-            }
-            return Json("{}");
-        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -258,5 +227,46 @@ namespace Carly.Controllers
             }
             base.Dispose(disposing);
         }
+
+
+        //Statistic (count) of our brands
+        public JsonResult BrandsStatistics()
+        {
+            //GroupBy BrandName query
+            var brands = db.Degems.GroupBy(x => new { x.Brand.BrandName }).Select(g => new { label = g.Key.BrandName, count = g.Sum(am => am.Quantity) });
+            if (brands.Count() > 0)
+            {
+                string json = JsonConvert.SerializeObject(brands.ToArray());
+                return Json(brands.ToList(), JsonRequestBehavior.AllowGet);
+            }
+            return Json("{}");
+        }
+
+        //Statistic of our brands by country
+        public JsonResult CountryStatistics()
+        {
+            //GroupBy Countrh query
+            var brands = db.Degems.GroupBy(x => new { x.Brand.OriginCountry }).Select(g => new { label = g.Key.OriginCountry, count = g.Sum(am => am.Quantity) });
+            if (brands.Count() > 0)
+            {
+                string json = JsonConvert.SerializeObject(brands.ToArray());
+                return Json(brands.ToList(), JsonRequestBehavior.AllowGet);
+            }
+            return Json("{}");
+        }
+
+        //Statistic of our brands by Color
+        public JsonResult ColorStatistics()
+        {
+            //GroupBy Color query
+            var brands = db.Degems.GroupBy(x => new { x.Color }).Select(g => new { label = g.Key.Color, count = g.Sum(am => am.Quantity) });
+            if (brands.Count() > 0)
+            {
+                string json = JsonConvert.SerializeObject(brands.ToArray());
+                return Json(brands.ToList(), JsonRequestBehavior.AllowGet);
+            }
+            return Json("{}");
+        }
+
     }
 }

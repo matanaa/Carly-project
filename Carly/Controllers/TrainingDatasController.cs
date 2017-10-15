@@ -17,38 +17,39 @@ namespace Carly.Controllers
         // GET: TrainingDatas
         public ActionResult Index()
         {
-            if (!User.IsInRole("Admin"))
+            if (!User.IsInRole("Admin")) //This page is available only for admins
             {
                 return new HttpUnauthorizedResult("Unauthorized");
             }
             return View(db.TrainingDatas.ToList());
         }
 
-        public ActionResult LoadFromFile()
+        public ActionResult LoadFromFile() //this is one time function, which we use for loading the data from external file
         {
-            if (!User.IsInRole("Admin"))
+            return View(); //return because we loaded it once
+
+
+            if (!User.IsInRole("Admin")) //only admin can do this
             {
                 return new HttpUnauthorizedResult("Unauthorized");
             }
             var fileContents = System.IO.File.ReadAllText(Server.MapPath("~/Content/load.csv"));
+
             foreach (var line in fileContents.Split('\n'))
             {
-
                 var arr = line.ToString().Split('~');
-                TrainingData tmp = new TrainingData();
-                if (arr.Length==2){ 
-                tmp.title = arr[0];
-                tmp.word = arr[1];
-                db.TrainingDatas.Add(tmp);
-            }
-                //db.SaveChanges();
-
+                TrainingData tmp = new TrainingData(); //build new object of Training Data
+                if (arr.Length == 2)
+                { //update it's data members from the file
+                    tmp.title = arr[0];
+                    tmp.word = arr[1];
+                    db.TrainingDatas.Add(tmp); //add it to the Training Data table in the DB
+                }
             }
             db.SaveChanges();
 
             return Content(fileContents);
 
-            //return View(db.TrainingDatas.ToList());
         }
         public ActionResult goodList()
         {
@@ -57,7 +58,7 @@ namespace Carly.Controllers
                 return new HttpUnauthorizedResult("Unauthorized");
             }
             return View("Index", db.TrainingDatas.Where(g => g.title.Equals("good")).ToList());
-            
+
         }
 
         // GET: TrainingDatas/Details/5

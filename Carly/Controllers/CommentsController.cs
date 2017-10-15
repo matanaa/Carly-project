@@ -17,7 +17,7 @@ namespace Carly.Controllers
         // GET: Comments
         public ActionResult Index()
         {
-            if (!User.IsInRole("Admin"))
+            if (!User.IsInRole("Admin")) //only admin can see the Comment Area
             {
                 return new HttpUnauthorizedResult("Unauthorized");
             }
@@ -28,7 +28,7 @@ namespace Carly.Controllers
         // GET: Comments/Details/5
         public ActionResult Details(int? id)
         {
-            if (!User.IsInRole("Admin"))
+            if (!User.IsInRole("Admin")) //only admin can see the Comment Area
             {
                 return new HttpUnauthorizedResult("Unauthorized");
             }
@@ -63,7 +63,6 @@ namespace Carly.Controllers
             {
                 db.Comment.Add(comment);
                 db.SaveChanges();
-                //return RedirectToAction("Index");
             }
             return Redirect("/Degems/Details/"+comment.DegemID+"/#post-" + comment.ID);
             ViewBag.DegemID = new SelectList(db.Degems, "DegemId", "DegemName", comment.DegemID);

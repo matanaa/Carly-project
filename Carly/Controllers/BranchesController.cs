@@ -17,31 +17,26 @@ namespace Carly.Controllers
         // GET: Branches
         public ActionResult Index(string BranchSearchString, string CountrySearchString, string CitySearchString)
         {
-
-            
-
+            //bring all the data in "Branch" table, from the DB
             var FilterBranches = from b in db.Branches select b;
 
-            if (!String.IsNullOrEmpty(BranchSearchString))
+            //Searching-Options
+            if (!String.IsNullOrEmpty(BranchSearchString)) //search by BranchName
             {
                 FilterBranches = FilterBranches.Where(b => b.BranchName.Contains(BranchSearchString));
             }
 
-            if (!String.IsNullOrEmpty(CountrySearchString))
+            if (!String.IsNullOrEmpty(CountrySearchString)) //search by Country
             {
                 FilterBranches = FilterBranches.Where(b => b.Country.Contains(CountrySearchString));
             }
 
-            if (!String.IsNullOrEmpty(CitySearchString))
+            if (!String.IsNullOrEmpty(CitySearchString)) //search by City
             {
                 FilterBranches = FilterBranches.Where(b => b.City.Contains(CitySearchString));
             }
 
-            //if (User.IsInRole("Admin"))
-                return View(FilterBranches);
- 
-            //return View("ReadOnlyIndex", FilterBranches);
-
+            return View(FilterBranches);
         }
 
         // GET: Branches/Details/5
@@ -57,7 +52,6 @@ namespace Carly.Controllers
                 return HttpNotFound();
             }
 
-           
             return View(branch);
         }
 

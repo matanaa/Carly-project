@@ -14,38 +14,17 @@ namespace Carly.Controllers
 
         public ActionResult Index()
         {
-            var allCars = (from b in db.Brands
-                           join m in db.Degems on b.id equals m.BrandID
-                           select new { b.BrandName, b.OriginCountry, m.DegemName, m.Color, m.Quantity });
-
-            var carDetails = new List<CarDetails>();
-            foreach (var c in allCars)
-                carDetails.Add(new CarDetails
-                {
-                    BrandName = c.BrandName,
-                    OriginCountry = c.OriginCountry,
-                    DegemName = c.DegemName,
-                    Color = c.Color,
-                    Quantity = c.Quantity
-                });
-
-            ViewBag.carDetails = carDetails;
             return View();
         }
 
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
+        
+        /*
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
 
             return View();
-        }
+        }*/
 
         public ActionResult CarChart()
         {

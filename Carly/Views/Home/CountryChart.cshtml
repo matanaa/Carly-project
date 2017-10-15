@@ -4,33 +4,33 @@
 }
 @Styles.Render("~/Content/graph")
 
+<!--Chart of cars, groupby country-->
+
+<h2>Country Statistics</h2>
+
+<p>View our cars stoke statistics, this graph shows origin country statistics for our models</p>
+
+<div id="CountryStatistics">
+    <div id="explanation" style="visibility : visible">
+        <span id="percentage"></span><br />
+    </div>
+</div>
 
 
-        <h2>Country Statistics</h2>
 
-<p>view our cars stoke statistics, this graph shows origin country statistics for our models</p>
-
-        <div id="CountryStatistics">
-            <div id="explanation" style="visibility : visible">
-                <span id="percentage"></span><br />
-            </div>
-        </div>
-
-
-        
 @Scripts.Render("~/bundles/graph")
 @section scripts
 {
-        @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/modernizr")
 
     <script src="https://d3js.org/d3.v4.min.js"></script>
-<script>
+    <script>
 
-    $(document).ready(function () {
-    Graph('/degems/BrandsStatistics/', "chartByBrand");
-    Graph('/degems/CountryStatistics/', "CountryStatistics");
-    Graph('/degems/ColorStatistics/', "ColorStatistics");
-    });
-    
-</script>
+        $(document).ready(function () {
+            Graph('/degems/BrandsStatistics/', "chartByBrand");
+            Graph('/degems/CountryStatistics/', "CountryStatistics");
+            Graph('/degems/ColorStatistics/', "ColorStatistics");
+        });
+
+    </script>
 }
