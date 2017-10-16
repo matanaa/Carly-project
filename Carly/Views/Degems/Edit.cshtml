@@ -56,7 +56,7 @@
                             <div><input value="@imgs[0]" class="img-field form-control text-box single-line" type="text" name="pics[]" onchange="onChangePic()"></div>
                      
 
-                            @for (var i = 0; i < imgs.Length; i++)
+                            @for (var i = 1; i < imgs.Length; i++)
                             {
 
                                 <div><br /><input onchange="onChangePic()" value="@imgs[i]" class="img-field comments-form form-control text-box single-line " type="text" name="mytext[]" /><a href="#" class="remove_field"><span class="glyphicon glyphicon-remove"></span>Remove</a></div>
